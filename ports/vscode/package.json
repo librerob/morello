@@ -1,0 +1,27 @@
+{
+  "name": "morello-theme",
+  "displayName": "Morello",
+  "description": "Dark cherry ink, celadon functions and apricot keywords.",
+  "version": "0.1.0",
+  "publisher": "librerob",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/librerob/morello"
+  },
+  "contributes": {
+    "themes": [
+      {
+        "label": "Morello",
+        "uiTheme": "vs-dark",
+        "path": "./themes/morello-color-theme.json"
+      }
+    ]
+  }
+}

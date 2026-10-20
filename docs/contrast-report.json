@@ -1,0 +1,1291 @@
+{
+  "method": "WCAG 2.x sRGB relative luminance; no rounded ratios used for pass/fail",
+  "scope": "Specified foreground/background pairs on opaque surfaces only; not whole-application conformance",
+  "text_threshold": 4.5,
+  "checks_passed": 136,
+  "checks": [
+    {
+      "pair": "fg on bg",
+      "foreground": "#E8DDE2",
+      "background": "#2B1B23",
+      "ratio": 12.3636,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "fg on panel",
+      "foreground": "#E8DDE2",
+      "background": "#23171E",
+      "ratio": 13.0873,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "fg on line",
+      "foreground": "#E8DDE2",
+      "background": "#34232D",
+      "ratio": 11.1435,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "fg on float",
+      "foreground": "#E8DDE2",
+      "background": "#392831",
+      "ratio": 10.4295,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "muted on bg",
+      "foreground": "#C0ABB6",
+      "background": "#2B1B23",
+      "ratio": 7.5886,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "muted on panel",
+      "foreground": "#C0ABB6",
+      "background": "#23171E",
+      "ratio": 8.0328,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "muted on line",
+      "foreground": "#C0ABB6",
+      "background": "#34232D",
+      "ratio": 6.8397,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "muted on float",
+      "foreground": "#C0ABB6",
+      "background": "#392831",
+      "ratio": 6.4014,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "bright on bg",
+      "foreground": "#F5EBEF",
+      "background": "#2B1B23",
+      "ratio": 14.0308,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "bright on panel",
+      "foreground": "#F5EBEF",
+      "background": "#23171E",
+      "ratio": 14.8521,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "bright on line",
+      "foreground": "#F5EBEF",
+      "background": "#34232D",
+      "ratio": 12.6462,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "bright on float",
+      "foreground": "#F5EBEF",
+      "background": "#392831",
+      "ratio": 11.8358,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "keyword on bg",
+      "foreground": "#ECA994",
+      "background": "#2B1B23",
+      "ratio": 8.311,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "keyword on panel",
+      "foreground": "#ECA994",
+      "background": "#23171E",
+      "ratio": 8.7975,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "keyword on line",
+      "foreground": "#ECA994",
+      "background": "#34232D",
+      "ratio": 7.4909,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "keyword on float",
+      "foreground": "#ECA994",
+      "background": "#392831",
+      "ratio": 7.0109,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "string on bg",
+      "foreground": "#D3D59A",
+      "background": "#2B1B23",
+      "ratio": 10.7139,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "string on panel",
+      "foreground": "#D3D59A",
+      "background": "#23171E",
+      "ratio": 11.341,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "string on line",
+      "foreground": "#D3D59A",
+      "background": "#34232D",
+      "ratio": 9.6566,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "string on float",
+      "foreground": "#D3D59A",
+      "background": "#392831",
+      "ratio": 9.0378,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "func on bg",
+      "foreground": "#A8D8BF",
+      "background": "#2B1B23",
+      "ratio": 10.3132,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "func on panel",
+      "foreground": "#A8D8BF",
+      "background": "#23171E",
+      "ratio": 10.9168,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "func on line",
+      "foreground": "#A8D8BF",
+      "background": "#34232D",
+      "ratio": 9.2954,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "func on float",
+      "foreground": "#A8D8BF",
+      "background": "#392831",
+      "ratio": 8.6998,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "variable on bg",
+      "foreground": "#E8DDE2",
+      "background": "#2B1B23",
+      "ratio": 12.3636,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "variable on panel",
+      "foreground": "#E8DDE2",
+      "background": "#23171E",
+      "ratio": 13.0873,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "variable on line",
+      "foreground": "#E8DDE2",
+      "background": "#34232D",
+      "ratio": 11.1435,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "variable on float",
+      "foreground": "#E8DDE2",
+      "background": "#392831",
+      "ratio": 10.4295,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "constant on bg",
+      "foreground": "#D7ADC3",
+      "background": "#2B1B23",
+      "ratio": 8.2997,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "constant on panel",
+      "foreground": "#D7ADC3",
+      "background": "#23171E",
+      "ratio": 8.7856,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "constant on line",
+      "foreground": "#D7ADC3",
+      "background": "#34232D",
+      "ratio": 7.4807,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "constant on float",
+      "foreground": "#D7ADC3",
+      "background": "#392831",
+      "ratio": 7.0013,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "comment on bg",
+      "foreground": "#AA94A0",
+      "background": "#2B1B23",
+      "ratio": 5.8054,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "comment on panel",
+      "foreground": "#AA94A0",
+      "background": "#23171E",
+      "ratio": 6.1453,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "comment on line",
+      "foreground": "#AA94A0",
+      "background": "#34232D",
+      "ratio": 5.2325,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "comment on float",
+      "foreground": "#AA94A0",
+      "background": "#392831",
+      "ratio": 4.8972,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "type on bg",
+      "foreground": "#A5BECA",
+      "background": "#2B1B23",
+      "ratio": 8.4269,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "type on panel",
+      "foreground": "#A5BECA",
+      "background": "#23171E",
+      "ratio": 8.9202,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "type on line",
+      "foreground": "#A5BECA",
+      "background": "#34232D",
+      "ratio": 7.5953,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "type on float",
+      "foreground": "#A5BECA",
+      "background": "#392831",
+      "ratio": 7.1086,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "operator on bg",
+      "foreground": "#C0ADB7",
+      "background": "#2B1B23",
+      "ratio": 7.7137,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "operator on panel",
+      "foreground": "#C0ADB7",
+      "background": "#23171E",
+      "ratio": 8.1652,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "operator on line",
+      "foreground": "#C0ADB7",
+      "background": "#34232D",
+      "ratio": 6.9525,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "operator on float",
+      "foreground": "#C0ADB7",
+      "background": "#392831",
+      "ratio": 6.5069,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "punctuation on bg",
+      "foreground": "#AE959F",
+      "background": "#2B1B23",
+      "ratio": 5.9196,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "punctuation on panel",
+      "foreground": "#AE959F",
+      "background": "#23171E",
+      "ratio": 6.2661,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "punctuation on line",
+      "foreground": "#AE959F",
+      "background": "#34232D",
+      "ratio": 5.3354,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "punctuation on float",
+      "foreground": "#AE959F",
+      "background": "#392831",
+      "ratio": 4.9935,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "error on bg",
+      "foreground": "#F08F98",
+      "background": "#2B1B23",
+      "ratio": 7.0788,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "error on panel",
+      "foreground": "#F08F98",
+      "background": "#23171E",
+      "ratio": 7.4931,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "error on line",
+      "foreground": "#F08F98",
+      "background": "#34232D",
+      "ratio": 6.3802,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "error on float",
+      "foreground": "#F08F98",
+      "background": "#392831",
+      "ratio": 5.9714,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "warning on bg",
+      "foreground": "#E5BF88",
+      "background": "#2B1B23",
+      "ratio": 9.4561,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "warning on panel",
+      "foreground": "#E5BF88",
+      "background": "#23171E",
+      "ratio": 10.0097,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "warning on line",
+      "foreground": "#E5BF88",
+      "background": "#34232D",
+      "ratio": 8.523,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "warning on float",
+      "foreground": "#E5BF88",
+      "background": "#392831",
+      "ratio": 7.9768,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "info on bg",
+      "foreground": "#A5BECA",
+      "background": "#2B1B23",
+      "ratio": 8.4269,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "info on panel",
+      "foreground": "#A5BECA",
+      "background": "#23171E",
+      "ratio": 8.9202,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "info on line",
+      "foreground": "#A5BECA",
+      "background": "#34232D",
+      "ratio": 7.5953,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "info on float",
+      "foreground": "#A5BECA",
+      "background": "#392831",
+      "ratio": 7.1086,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "hint on bg",
+      "foreground": "#A8D8BF",
+      "background": "#2B1B23",
+      "ratio": 10.3132,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "hint on panel",
+      "foreground": "#A8D8BF",
+      "background": "#23171E",
+      "ratio": 10.9168,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "hint on line",
+      "foreground": "#A8D8BF",
+      "background": "#34232D",
+      "ratio": 9.2954,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "hint on float",
+      "foreground": "#A8D8BF",
+      "background": "#392831",
+      "ratio": 8.6998,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 1 on bg",
+      "foreground": "#F08F98",
+      "background": "#2B1B23",
+      "ratio": 7.0788,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 1 on panel",
+      "foreground": "#F08F98",
+      "background": "#23171E",
+      "ratio": 7.4931,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 1 on line",
+      "foreground": "#F08F98",
+      "background": "#34232D",
+      "ratio": 6.3802,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 1 on float",
+      "foreground": "#F08F98",
+      "background": "#392831",
+      "ratio": 5.9714,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 2 on bg",
+      "foreground": "#A8C99D",
+      "background": "#2B1B23",
+      "ratio": 8.9631,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 2 on panel",
+      "foreground": "#A8C99D",
+      "background": "#23171E",
+      "ratio": 9.4878,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 2 on line",
+      "foreground": "#A8C99D",
+      "background": "#34232D",
+      "ratio": 8.0786,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 2 on float",
+      "foreground": "#A8C99D",
+      "background": "#392831",
+      "ratio": 7.5609,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 3 on bg",
+      "foreground": "#E5BF88",
+      "background": "#2B1B23",
+      "ratio": 9.4561,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 3 on panel",
+      "foreground": "#E5BF88",
+      "background": "#23171E",
+      "ratio": 10.0097,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 3 on line",
+      "foreground": "#E5BF88",
+      "background": "#34232D",
+      "ratio": 8.523,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 3 on float",
+      "foreground": "#E5BF88",
+      "background": "#392831",
+      "ratio": 7.9768,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 4 on bg",
+      "foreground": "#A5BECA",
+      "background": "#2B1B23",
+      "ratio": 8.4269,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 4 on panel",
+      "foreground": "#A5BECA",
+      "background": "#23171E",
+      "ratio": 8.9202,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 4 on line",
+      "foreground": "#A5BECA",
+      "background": "#34232D",
+      "ratio": 7.5953,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 4 on float",
+      "foreground": "#A5BECA",
+      "background": "#392831",
+      "ratio": 7.1086,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 5 on bg",
+      "foreground": "#D7ADC3",
+      "background": "#2B1B23",
+      "ratio": 8.2997,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 5 on panel",
+      "foreground": "#D7ADC3",
+      "background": "#23171E",
+      "ratio": 8.7856,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 5 on line",
+      "foreground": "#D7ADC3",
+      "background": "#34232D",
+      "ratio": 7.4807,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 5 on float",
+      "foreground": "#D7ADC3",
+      "background": "#392831",
+      "ratio": 7.0013,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 6 on bg",
+      "foreground": "#9ACDC3",
+      "background": "#2B1B23",
+      "ratio": 9.2654,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 6 on panel",
+      "foreground": "#9ACDC3",
+      "background": "#23171E",
+      "ratio": 9.8078,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 6 on line",
+      "foreground": "#9ACDC3",
+      "background": "#34232D",
+      "ratio": 8.3511,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 6 on float",
+      "foreground": "#9ACDC3",
+      "background": "#392831",
+      "ratio": 7.8159,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 7 on bg",
+      "foreground": "#D9CBD2",
+      "background": "#2B1B23",
+      "ratio": 10.4563,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 7 on panel",
+      "foreground": "#D9CBD2",
+      "background": "#23171E",
+      "ratio": 11.0683,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 7 on line",
+      "foreground": "#D9CBD2",
+      "background": "#34232D",
+      "ratio": 9.4244,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 7 on float",
+      "foreground": "#D9CBD2",
+      "background": "#392831",
+      "ratio": 8.8205,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 8 on bg",
+      "foreground": "#AA94A0",
+      "background": "#2B1B23",
+      "ratio": 5.8054,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 8 on panel",
+      "foreground": "#AA94A0",
+      "background": "#23171E",
+      "ratio": 6.1453,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 8 on line",
+      "foreground": "#AA94A0",
+      "background": "#34232D",
+      "ratio": 5.2325,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 8 on float",
+      "foreground": "#AA94A0",
+      "background": "#392831",
+      "ratio": 4.8972,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 9 on bg",
+      "foreground": "#FFACB0",
+      "background": "#2B1B23",
+      "ratio": 9.1761,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 9 on panel",
+      "foreground": "#FFACB0",
+      "background": "#23171E",
+      "ratio": 9.7132,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 9 on line",
+      "foreground": "#FFACB0",
+      "background": "#34232D",
+      "ratio": 8.2706,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 9 on float",
+      "foreground": "#FFACB0",
+      "background": "#392831",
+      "ratio": 7.7406,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 10 on bg",
+      "foreground": "#C3DEAF",
+      "background": "#2B1B23",
+      "ratio": 11.2077,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 10 on panel",
+      "foreground": "#C3DEAF",
+      "background": "#23171E",
+      "ratio": 11.8637,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 10 on line",
+      "foreground": "#C3DEAF",
+      "background": "#34232D",
+      "ratio": 10.1016,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 10 on float",
+      "foreground": "#C3DEAF",
+      "background": "#392831",
+      "ratio": 9.4543,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 11 on bg",
+      "foreground": "#F3D4A4",
+      "background": "#2B1B23",
+      "ratio": 11.5009,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 11 on panel",
+      "foreground": "#F3D4A4",
+      "background": "#23171E",
+      "ratio": 12.1741,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 11 on line",
+      "foreground": "#F3D4A4",
+      "background": "#34232D",
+      "ratio": 10.3659,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 11 on float",
+      "foreground": "#F3D4A4",
+      "background": "#392831",
+      "ratio": 9.7017,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 12 on bg",
+      "foreground": "#C0D6DF",
+      "background": "#2B1B23",
+      "ratio": 10.8474,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 12 on panel",
+      "foreground": "#C0D6DF",
+      "background": "#23171E",
+      "ratio": 11.4824,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 12 on line",
+      "foreground": "#C0D6DF",
+      "background": "#34232D",
+      "ratio": 9.7769,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 12 on float",
+      "foreground": "#C0D6DF",
+      "background": "#392831",
+      "ratio": 9.1504,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 13 on bg",
+      "foreground": "#E8C5D8",
+      "background": "#2B1B23",
+      "ratio": 10.4453,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 13 on panel",
+      "foreground": "#E8C5D8",
+      "background": "#23171E",
+      "ratio": 11.0567,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 13 on line",
+      "foreground": "#E8C5D8",
+      "background": "#34232D",
+      "ratio": 9.4145,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 13 on float",
+      "foreground": "#E8C5D8",
+      "background": "#392831",
+      "ratio": 8.8112,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 14 on bg",
+      "foreground": "#B9E3D8",
+      "background": "#2B1B23",
+      "ratio": 11.7172,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 14 on panel",
+      "foreground": "#B9E3D8",
+      "background": "#23171E",
+      "ratio": 12.4031,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 14 on line",
+      "foreground": "#B9E3D8",
+      "background": "#34232D",
+      "ratio": 10.5609,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 14 on float",
+      "foreground": "#B9E3D8",
+      "background": "#392831",
+      "ratio": 9.8841,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 15 on bg",
+      "foreground": "#F5EBEF",
+      "background": "#2B1B23",
+      "ratio": 14.0308,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 15 on panel",
+      "foreground": "#F5EBEF",
+      "background": "#23171E",
+      "ratio": 14.8521,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 15 on line",
+      "foreground": "#F5EBEF",
+      "background": "#34232D",
+      "ratio": 12.6462,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "ANSI 15 on float",
+      "foreground": "#F5EBEF",
+      "background": "#392831",
+      "ratio": 11.8358,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "selected text",
+      "foreground": "#E8DDE2",
+      "background": "#573B4B",
+      "ratio": 7.4431,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "search match",
+      "foreground": "#2B1B23",
+      "background": "#D3D59A",
+      "ratio": 10.7139,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "current match",
+      "foreground": "#2B1B23",
+      "background": "#A8D8BF",
+      "ratio": 10.3132,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "cursor cell",
+      "foreground": "#2B1B23",
+      "background": "#E8DDE2",
+      "ratio": 12.3636,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "selected completion/tab",
+      "foreground": "#2B1B23",
+      "background": "#A8D8BF",
+      "ratio": 10.3132,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "substitute",
+      "foreground": "#2B1B23",
+      "background": "#D7ADC3",
+      "ratio": 8.2997,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "current line number",
+      "foreground": "#A8D8BF",
+      "background": "#34232D",
+      "ratio": 9.2954,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "diff added",
+      "foreground": "#E8DDE2",
+      "background": "#28382F",
+      "ratio": 9.3533,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "diff changed",
+      "foreground": "#E8DDE2",
+      "background": "#30323D",
+      "ratio": 9.6234,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "diff deleted",
+      "foreground": "#F08F98",
+      "background": "#46252E",
+      "ratio": 5.8085,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "diff changed word",
+      "foreground": "#E8DDE2",
+      "background": "#48404F",
+      "ratio": 7.4804,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "active focus border",
+      "foreground": "#A8D8BF",
+      "background": "#2B1B23",
+      "ratio": 10.3132,
+      "threshold": 3.0,
+      "pass": true
+    }
+  ],
+  "decorative_exceptions": [
+    {
+      "role": "subdued",
+      "hex": "#806774",
+      "ratio_on_bg": 3.2016,
+      "purpose": "Decorative only; not covered by the core-text AA claim"
+    },
+    {
+      "role": "border",
+      "hex": "#725260",
+      "ratio_on_bg": 2.408,
+      "purpose": "Decorative only; not covered by the core-text AA claim"
+    }
+  ],
+  "ansi_exceptions": [
+    {
+      "index": 0,
+      "hex": "#392831",
+      "ratio_on_bg": 1.1855,
+      "purpose": "Utility slot; unsuitable for text on the default background"
+    }
+  ],
+  "oklch": {
+    "bg": {
+      "L": 0.2458,
+      "C": 0.0287,
+      "h": 347.99
+    },
+    "panel": {
+      "L": 0.2229,
+      "C": 0.023,
+      "h": 343.28
+    },
+    "line": {
+      "L": 0.2808,
+      "C": 0.0308,
+      "h": 343.17
+    },
+    "float": {
+      "L": 0.3004,
+      "C": 0.0294,
+      "h": 345.96
+    },
+    "selection": {
+      "L": 0.3899,
+      "C": 0.0463,
+      "h": 344.22
+    },
+    "fg": {
+      "L": 0.9077,
+      "C": 0.0137,
+      "h": 347.97
+    },
+    "muted": {
+      "L": 0.7625,
+      "C": 0.0285,
+      "h": 344.85
+    },
+    "subdued": {
+      "L": 0.5425,
+      "C": 0.037,
+      "h": 345.78
+    },
+    "bright": {
+      "L": 0.949,
+      "C": 0.012,
+      "h": 350.98
+    },
+    "keyword": {
+      "L": 0.7932,
+      "C": 0.0849,
+      "h": 38.13
+    },
+    "string": {
+      "L": 0.8572,
+      "C": 0.0773,
+      "h": 109.55
+    },
+    "func": {
+      "L": 0.8415,
+      "C": 0.061,
+      "h": 162.06
+    },
+    "variable": {
+      "L": 0.9077,
+      "C": 0.0137,
+      "h": 347.97
+    },
+    "constant": {
+      "L": 0.7917,
+      "C": 0.0567,
+      "h": 345.66
+    },
+    "comment": {
+      "L": 0.6898,
+      "C": 0.031,
+      "h": 343.92
+    },
+    "type": {
+      "L": 0.7865,
+      "C": 0.0322,
+      "h": 228.32
+    },
+    "operator": {
+      "L": 0.7668,
+      "C": 0.0258,
+      "h": 344.63
+    },
+    "punctuation": {
+      "L": 0.6952,
+      "C": 0.0327,
+      "h": 351.91
+    },
+    "border": {
+      "L": 0.4772,
+      "C": 0.0472,
+      "h": 351.08
+    },
+    "focus": {
+      "L": 0.8415,
+      "C": 0.061,
+      "h": 162.06
+    },
+    "cursor": {
+      "L": 0.9077,
+      "C": 0.0137,
+      "h": 347.97
+    },
+    "search_bg": {
+      "L": 0.8572,
+      "C": 0.0773,
+      "h": 109.55
+    },
+    "search_fg": {
+      "L": 0.2458,
+      "C": 0.0287,
+      "h": 347.99
+    },
+    "search_current_bg": {
+      "L": 0.8415,
+      "C": 0.061,
+      "h": 162.06
+    },
+    "search_current_fg": {
+      "L": 0.2458,
+      "C": 0.0287,
+      "h": 347.99
+    },
+    "error": {
+      "L": 0.754,
+      "C": 0.1178,
+      "h": 14.31
+    },
+    "warning": {
+      "L": 0.8251,
+      "C": 0.0835,
+      "h": 76.38
+    },
+    "info": {
+      "L": 0.7865,
+      "C": 0.0322,
+      "h": 228.32
+    },
+    "hint": {
+      "L": 0.8415,
+      "C": 0.061,
+      "h": 162.06
+    },
+    "diff_add": {
+      "L": 0.3234,
+      "C": 0.0264,
+      "h": 159.84
+    },
+    "diff_change": {
+      "L": 0.3197,
+      "C": 0.0197,
+      "h": 277.11
+    },
+    "diff_delete": {
+      "L": 0.3111,
+      "C": 0.0513,
+      "h": 2.96
+    },
+    "diff_text": {
+      "L": 0.3854,
+      "C": 0.0271,
+      "h": 309.09
+    }
+  },
+  "ports": {
+    "toml_parse": "passed",
+    "ansi_16_agreement": "passed",
+    "lua_palette_agreement": "passed",
+    "native_runtime": "Run tests/headless.lua in Neovim; terminal apps must be checked separately"
+  }
+}

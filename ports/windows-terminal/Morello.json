@@ -1,0 +1,23 @@
+{
+  "name": "Morello",
+  "background": "#2B1B23",
+  "foreground": "#E8DDE2",
+  "cursorColor": "#E8DDE2",
+  "selectionBackground": "#573B4B",
+  "black": "#392831",
+  "red": "#F08F98",
+  "green": "#A8C99D",
+  "yellow": "#E5BF88",
+  "blue": "#A5BECA",
+  "purple": "#D7ADC3",
+  "cyan": "#9ACDC3",
+  "white": "#D9CBD2",
+  "brightBlack": "#AA94A0",
+  "brightRed": "#FFACB0",
+  "brightGreen": "#C3DEAF",
+  "brightYellow": "#F3D4A4",
+  "brightBlue": "#C0D6DF",
+  "brightPurple": "#E8C5D8",
+  "brightCyan": "#B9E3D8",
+  "brightWhite": "#F5EBEF"
+}
