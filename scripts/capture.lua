@@ -52,6 +52,12 @@ if view == "ui" then
 end
 vim.fn.winrestview({ topline = 1 })
 vim.defer_fn(function()
+  local messages = vim.fn.execute("messages")
+  if messages:find("E%d+:") then
+    io.stderr:write(messages .. "\n")
+    vim.cmd("cquit 1")
+    return
+  end
   vim.cmd("redraw!")
   vim.fn.writefile({ "ready" }, assert(vim.env.MORELLO_READY))
 end, 700)

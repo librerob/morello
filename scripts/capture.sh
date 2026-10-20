@@ -34,6 +34,8 @@ trap 'exit 130' INT
 trap 'exit 143' TERM
 
 mkdir -p assets
+# The preview sets background and truecolor explicitly; skip startup probes on CI.
+export NVIM_NOTTYFAST=1
 for view in lua python ui; do
   export MORELLO_VIEW="$view"
   export MORELLO_READY="$capture_dir/$view.ready"
