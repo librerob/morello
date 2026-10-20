@@ -1,4 +1,4 @@
--- Run inside xterm; scripts/capture.sh captures the actual terminal window.
+-- Run inside Kitty; scripts/capture.sh captures the actual terminal window.
 vim.opt.runtimepath:prepend(vim.fn.getcwd())
 vim.o.termguicolors = true
 vim.o.number = true
@@ -12,7 +12,8 @@ vim.o.ruler = false
 vim.o.wrap = false
 vim.o.scrolloff = 3
 vim.o.shortmess = "filnxtToOFc"
-vim.o.statusline = " %{expand('%:t')} %m%=%{&filetype}  %l:%c "
+vim.o.winbar = " %f %m"
+vim.o.statusline = " NORMAL %=%{&filetype}  %l:%c "
 vim.cmd("filetype plugin indent on")
 vim.cmd("syntax enable")
 vim.cmd.colorscheme("morello")
@@ -30,16 +31,23 @@ if view == "ui" then
   vim.o.hlsearch = true
   local ns = vim.api.nvim_create_namespace("morello-preview")
   vim.diagnostic.set(ns, 0, {
-    { lnum = 9, col = 2, message = "Example warning", severity = vim.diagnostic.severity.WARN },
+    { lnum = 9, col = 2, end_col = 8, message = "Expected a non-empty document name", severity = vim.diagnostic.severity.ERROR },
+    { lnum = 15, col = 12, end_col = 26, message = "Title falls back to the document name", severity = vim.diagnostic.severity.WARN },
   }, { virtual_text = false, signs = true, underline = true })
   local buf = vim.api.nvim_create_buf(false, true)
   vim.api.nvim_buf_set_lines(buf, 0, -1, false, {
-    " Library:add(name, metadata)", "", " Adds a document to the library.",
-    " Returns true, or nil and an error.",
+    " Error", " Expected a non-empty document name.", "", " Warning",
+    " Title falls back to the document name.",
   })
+  for row, group in pairs({ [0] = "DiagnosticError", [3] = "DiagnosticWarn" }) do
+    local label = vim.api.nvim_buf_get_lines(buf, row, row + 1, false)[1]
+    vim.api.nvim_buf_set_extmark(buf, ns, row, 0, {
+      end_col = #label, hl_group = group,
+    })
+  end
   vim.api.nvim_open_win(buf, false, {
-    relative = "editor", row = 7, col = 51, width = 41, height = 4,
-    style = "minimal", border = "rounded", title = " Documentation ",
+    relative = "editor", row = 7, col = 51, width = 43, height = 5,
+    style = "minimal", border = "rounded", title = " Diagnostics ",
   })
 end
 vim.fn.winrestview({ topline = 1 })

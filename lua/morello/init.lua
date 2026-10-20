@@ -104,7 +104,7 @@ function M.load()
     Ignore = { fg = p.subdued },
     Error = { fg = p.error, underline = true },
     Todo = { fg = p.bg, bg = p.func, bold = true },
-    ErrorMsg = { fg = p.error },
+    ErrorMsg = { fg = p.error, bold = true },
     WarningMsg = { fg = p.warning },
     MoreMsg = { fg = p.string },
     ModeMsg = { fg = p.func },
@@ -209,7 +209,7 @@ function M.load()
 
   for severity, color in pairs({ Error = p.error, Warn = p.warning, Info = p.info, Hint = p.hint }) do
     groups["Diagnostic" .. severity] = { fg = color }
-    groups["DiagnosticSign" .. severity] = { fg = color, bg = p.bg }
+    groups["DiagnosticSign" .. severity] = { fg = color, bg = p.bg, bold = severity == "Error" }
     groups["DiagnosticFloating" .. severity] = { fg = color, bg = p.float }
     groups["DiagnosticVirtualText" .. severity] = { fg = color, bg = p.bg }
     groups["DiagnosticVirtualLines" .. severity] = { fg = color, bg = p.bg }

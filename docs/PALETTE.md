@@ -21,7 +21,7 @@ Opaque sRGB. `palette.json` is the source for all ports.
 | `comment` | Mauve grey | `#AA94A0` |
 | `type` | Blue porcelain | `#A5BECA` |
 | `operator` | Pale pewter | `#C0ADB7` |
-| `punctuation` | Muted pewter | `#AE959F` |
+| `punctuation` | Neutral pewter | `#B3ABB2` |
 | `border` | Cherry edge | `#725260` |
 | `focus` | Celadon | `#A8D8BF` |
 | `cursor` | Porcelain | `#E8DDE2` |
@@ -29,7 +29,7 @@ Opaque sRGB. `palette.json` is the source for all ports.
 | `search_fg` | Search fg | `#2B1B23` |
 | `search_current_bg` | Search current bg | `#A8D8BF` |
 | `search_current_fg` | Search current fg | `#2B1B23` |
-| `error` | Error | `#F08F98` |
+| `error` | Error | `#F481AD` |
 | `warning` | Warning | `#E5BF88` |
 | `info` | Info | `#A5BECA` |
 | `hint` | Hint | `#A8D8BF` |
@@ -43,7 +43,7 @@ Opaque sRGB. `palette.json` is the source for all ports.
 | Index | Slot | Hex |
 | --- | --- | --- |
 | 0 | black | `#392831` |
-| 1 | red | `#F08F98` |
+| 1 | red | `#F481AD` |
 | 2 | green | `#A8C99D` |
 | 3 | yellow | `#E5BF88` |
 | 4 | blue | `#A5BECA` |
@@ -51,7 +51,7 @@ Opaque sRGB. `palette.json` is the source for all ports.
 | 6 | cyan | `#9ACDC3` |
 | 7 | white | `#D9CBD2` |
 | 8 | Bright black | `#AA94A0` |
-| 9 | Bright red | `#FFACB0` |
+| 9 | Bright red | `#FFA8CA` |
 | 10 | Bright green | `#C3DEAF` |
 | 11 | Bright yellow | `#F3D4A4` |
 | 12 | Bright blue | `#C0D6DF` |

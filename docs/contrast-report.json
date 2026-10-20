@@ -358,65 +358,65 @@
     },
     {
       "pair": "punctuation on bg",
-      "foreground": "#AE959F",
+      "foreground": "#B3ABB2",
       "background": "#2B1B23",
-      "ratio": 5.9196,
+      "ratio": 7.3104,
       "threshold": 4.5,
       "pass": true
     },
     {
       "pair": "punctuation on panel",
-      "foreground": "#AE959F",
+      "foreground": "#B3ABB2",
       "background": "#23171E",
-      "ratio": 6.2661,
+      "ratio": 7.7383,
       "threshold": 4.5,
       "pass": true
     },
     {
       "pair": "punctuation on line",
-      "foreground": "#AE959F",
+      "foreground": "#B3ABB2",
       "background": "#34232D",
-      "ratio": 5.3354,
+      "ratio": 6.589,
       "threshold": 4.5,
       "pass": true
     },
     {
       "pair": "punctuation on float",
-      "foreground": "#AE959F",
+      "foreground": "#B3ABB2",
       "background": "#392831",
-      "ratio": 4.9935,
+      "ratio": 6.1667,
       "threshold": 4.5,
       "pass": true
     },
     {
       "pair": "error on bg",
-      "foreground": "#F08F98",
+      "foreground": "#F481AD",
       "background": "#2B1B23",
-      "ratio": 7.0788,
+      "ratio": 6.6914,
       "threshold": 4.5,
       "pass": true
     },
     {
       "pair": "error on panel",
-      "foreground": "#F08F98",
+      "foreground": "#F481AD",
       "background": "#23171E",
-      "ratio": 7.4931,
+      "ratio": 7.0831,
       "threshold": 4.5,
       "pass": true
     },
     {
       "pair": "error on line",
-      "foreground": "#F08F98",
+      "foreground": "#F481AD",
       "background": "#34232D",
-      "ratio": 6.3802,
+      "ratio": 6.0311,
       "threshold": 4.5,
       "pass": true
     },
     {
       "pair": "error on float",
-      "foreground": "#F08F98",
+      "foreground": "#F481AD",
       "background": "#392831",
-      "ratio": 5.9714,
+      "ratio": 5.6446,
       "threshold": 4.5,
       "pass": true
     },
@@ -518,33 +518,33 @@
     },
     {
       "pair": "ANSI 1 on bg",
-      "foreground": "#F08F98",
+      "foreground": "#F481AD",
       "background": "#2B1B23",
-      "ratio": 7.0788,
+      "ratio": 6.6914,
       "threshold": 4.5,
       "pass": true
     },
     {
       "pair": "ANSI 1 on panel",
-      "foreground": "#F08F98",
+      "foreground": "#F481AD",
       "background": "#23171E",
-      "ratio": 7.4931,
+      "ratio": 7.0831,
       "threshold": 4.5,
       "pass": true
     },
     {
       "pair": "ANSI 1 on line",
-      "foreground": "#F08F98",
+      "foreground": "#F481AD",
       "background": "#34232D",
-      "ratio": 6.3802,
+      "ratio": 6.0311,
       "threshold": 4.5,
       "pass": true
     },
     {
       "pair": "ANSI 1 on float",
-      "foreground": "#F08F98",
+      "foreground": "#F481AD",
       "background": "#392831",
-      "ratio": 5.9714,
+      "ratio": 5.6446,
       "threshold": 4.5,
       "pass": true
     },
@@ -774,33 +774,33 @@
     },
     {
       "pair": "ANSI 9 on bg",
-      "foreground": "#FFACB0",
+      "foreground": "#FFA8CA",
       "background": "#2B1B23",
-      "ratio": 9.1761,
+      "ratio": 9.1184,
       "threshold": 4.5,
       "pass": true
     },
     {
       "pair": "ANSI 9 on panel",
-      "foreground": "#FFACB0",
+      "foreground": "#FFA8CA",
       "background": "#23171E",
-      "ratio": 9.7132,
+      "ratio": 9.6522,
       "threshold": 4.5,
       "pass": true
     },
     {
       "pair": "ANSI 9 on line",
-      "foreground": "#FFACB0",
+      "foreground": "#FFA8CA",
       "background": "#34232D",
-      "ratio": 8.2706,
+      "ratio": 8.2186,
       "threshold": 4.5,
       "pass": true
     },
     {
       "pair": "ANSI 9 on float",
-      "foreground": "#FFACB0",
+      "foreground": "#FFA8CA",
       "background": "#392831",
-      "ratio": 7.7406,
+      "ratio": 7.692,
       "threshold": 4.5,
       "pass": true
     },
@@ -1070,9 +1070,9 @@
     },
     {
       "pair": "diff deleted",
-      "foreground": "#F08F98",
+      "foreground": "#F481AD",
       "background": "#46252E",
-      "ratio": 5.8085,
+      "ratio": 5.4907,
       "threshold": 4.5,
       "pass": true
     },
@@ -1202,9 +1202,9 @@
       "h": 344.63
     },
     "punctuation": {
-      "L": 0.6952,
-      "C": 0.0327,
-      "h": 351.91
+      "L": 0.75,
+      "C": 0.0134,
+      "h": 329.62
     },
     "border": {
       "L": 0.4772,
@@ -1242,9 +1242,9 @@
       "h": 347.99
     },
     "error": {
-      "L": 0.754,
-      "C": 0.1178,
-      "h": 14.31
+      "L": 0.7432,
+      "C": 0.1478,
+      "h": 357.04
     },
     "warning": {
       "L": 0.8251,

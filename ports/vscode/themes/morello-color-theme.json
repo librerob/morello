@@ -5,7 +5,7 @@
   "colors": {
     "foreground": "#E8DDE2",
     "descriptionForeground": "#C0ABB6",
-    "errorForeground": "#F08F98",
+    "errorForeground": "#F481AD",
     "focusBorder": "#A8D8BF",
     "textLink.foreground": "#A8D8BF",
     "textLink.activeForeground": "#F5EBEF",
@@ -25,13 +25,13 @@
     "editor.findMatchBackground": "#A8D8BF",
     "editor.findMatchForeground": "#2B1B23",
     "editor.findMatchHighlightForeground": "#E8DDE2",
-    "editorError.foreground": "#F08F98",
+    "editorError.foreground": "#F481AD",
     "editorWarning.foreground": "#E5BF88",
     "editorInfo.foreground": "#A5BECA",
     "editorHint.foreground": "#A8D8BF",
     "editorGutter.addedBackground": "#A8D8BF",
     "editorGutter.modifiedBackground": "#A5BECA",
-    "editorGutter.deletedBackground": "#F08F98",
+    "editorGutter.deletedBackground": "#F481AD",
     "editorBracketMatch.border": "#A8D8BF",
     "editorBracketMatch.background": "#34232D",
     "editorGroupHeader.tabsBackground": "#23171E",
@@ -104,11 +104,11 @@
     "terminal.selectionBackground": "#573B4B",
     "gitDecoration.addedResourceForeground": "#A8D8BF",
     "gitDecoration.modifiedResourceForeground": "#A5BECA",
-    "gitDecoration.deletedResourceForeground": "#F08F98",
+    "gitDecoration.deletedResourceForeground": "#F481AD",
     "gitDecoration.ignoredResourceForeground": "#AA94A0",
     "editor.findMatchHighlightBackground": "#D3D59A26",
     "terminal.ansiBlack": "#392831",
-    "terminal.ansiRed": "#F08F98",
+    "terminal.ansiRed": "#F481AD",
     "terminal.ansiGreen": "#A8C99D",
     "terminal.ansiYellow": "#E5BF88",
     "terminal.ansiBlue": "#A5BECA",
@@ -116,7 +116,7 @@
     "terminal.ansiCyan": "#9ACDC3",
     "terminal.ansiWhite": "#D9CBD2",
     "terminal.ansiBrightBlack": "#AA94A0",
-    "terminal.ansiBrightRed": "#FFACB0",
+    "terminal.ansiBrightRed": "#FFA8CA",
     "terminal.ansiBrightGreen": "#C3DEAF",
     "terminal.ansiBrightYellow": "#F3D4A4",
     "terminal.ansiBrightBlue": "#C0D6DF",
@@ -211,7 +211,7 @@
         "punctuation.section"
       ],
       "settings": {
-        "foreground": "#AE959F"
+        "foreground": "#B3ABB2"
       }
     },
     {
@@ -268,7 +268,7 @@
         "markup.deleted"
       ],
       "settings": {
-        "foreground": "#F08F98"
+        "foreground": "#F481AD"
       }
     }
   ],

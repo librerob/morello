@@ -44,7 +44,7 @@ These files set colors only. Editor syntax highlighting needs its editor theme t
 
 ### VS Code
 
-The [VS Code port](ports/vscode) includes workbench colors, TextMate scopes, semantic tokens, and the same terminal palette. It is not published on the Marketplace. To try it locally, copy that directory into `~/.vscode/extensions/librerob.morello-theme-0.1.0`, reload VS Code, then choose **Morello** from **Preferences: Color Theme**.
+The [VS Code port](ports/vscode) includes workbench colors, TextMate scopes, semantic tokens, and the same terminal palette. It is not published on the Marketplace. To try it locally, copy that directory into `~/.vscode/extensions/librerob.morello-theme-0.1.1`, reload VS Code, then choose **Morello** from **Preferences: Color Theme**.
 
 ## Previews
 
@@ -56,13 +56,13 @@ The [VS Code port](ports/vscode) includes workbench colors, TextMate scopes, sem
 
 ![Search and floating documentation in Neovim](assets/neovim-ui.png)
 
-These are captures of Neovim running in xterm with DejaVu Sans Mono. Lua uses the bundled Treesitter parser; Python uses the built-in syntax definitions. The examples and capture script are included. No image filters or transparency are used.
+These are captures of Neovim running in Kitty with JetBrains Mono, the included Kitty port, and a minimal built-in winbar and statusline. The UI view uses illustrative Error and Warning diagnostics with text labels. Lua uses the bundled Treesitter parser; Python uses the built-in syntax definitions. The examples and capture script are included. No image filters or transparency are used.
 
 ## Colors
 
 ![Morello palette](assets/palette.svg)
 
-The base is a dark red-violet, with a darker matching panel color. Apricot marks control flow, celadon marks functions, and citrine marks strings. Types use a quieter blue-grey; ordinary variables remain off-white.
+The base is a dark red-violet, with a darker matching panel color. Apricot marks control flow, celadon marks functions, and citrine marks strings. Types use a quieter blue-grey; ordinary variables remain off-white. Neutral punctuation sits above the mauve comments. Raspberry errors are distinct from the apricot keywords; error signs and error messages also use bold text.
 
 Body text contrast is **12.36:1**. Core syntax, punctuation, and comments pass **4.5:1** on the background, panel, cursor line, and floating surface. The report contains 136 tested pairs, including selections, search, and diff states. Inactive line numbers, borders, and ANSI black are deliberate exceptions. Transparency, dim attributes, and other plugins may change contrast.
 
@@ -80,13 +80,13 @@ python scripts/verify_extras.py
 nvim --headless -u NONE -l tests/headless.lua
 ```
 
-To refresh the screenshots on Linux, install xterm, Xvfb, xdotool, ImageMagick, DejaVu Sans Mono, Python 3, and Neovim, then run:
+To refresh the screenshots on Linux, install Kitty, Xvfb, xdotool, ImageMagick, JetBrains Mono, Python 3, and Neovim, then run:
 
 ```sh
 xvfb-run -a bash scripts/capture.sh
 ```
 
-`NVIM_BIN` and `PYTHON` can override the executables on `PATH`. The palette module can be used independently: `require("morello.palette")` returns the colors without changing editor settings. ANSI entries use indices 0–15.
+`NVIM_BIN` can override Neovim on `PATH`. On a headless machine without a GPU, add `LIBGL_ALWAYS_SOFTWARE=1` before `xvfb-run`. The palette module can be used independently: `require("morello.palette")` returns the colors without changing editor settings. ANSI entries use indices 0–15.
 
 ## License
 

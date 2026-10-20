@@ -1,6 +1,6 @@
 {
   "name": "Morello",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "space": "sRGB",
   "colors": {
     "bg": "#2B1B23",
@@ -20,7 +20,7 @@
     "comment": "#AA94A0",
     "type": "#A5BECA",
     "operator": "#C0ADB7",
-    "punctuation": "#AE959F",
+    "punctuation": "#B3ABB2",
     "border": "#725260",
     "focus": "#A8D8BF",
     "cursor": "#E8DDE2",
@@ -28,7 +28,7 @@
     "search_fg": "#2B1B23",
     "search_current_bg": "#A8D8BF",
     "search_current_fg": "#2B1B23",
-    "error": "#F08F98",
+    "error": "#F481AD",
     "warning": "#E5BF88",
     "info": "#A5BECA",
     "hint": "#A8D8BF",
@@ -39,7 +39,7 @@
   },
   "ansi": [
     "#392831",
-    "#F08F98",
+    "#F481AD",
     "#A8C99D",
     "#E5BF88",
     "#A5BECA",
@@ -47,7 +47,7 @@
     "#9ACDC3",
     "#D9CBD2",
     "#AA94A0",
-    "#FFACB0",
+    "#FFA8CA",
     "#C3DEAF",
     "#F3D4A4",
     "#C0D6DF",

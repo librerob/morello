@@ -2,7 +2,7 @@
   "name": "morello-theme",
   "displayName": "Morello",
   "description": "Dark cherry ink, celadon functions and apricot keywords.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "publisher": "librerob",
   "engines": {
     "vscode": "^1.85.0"
