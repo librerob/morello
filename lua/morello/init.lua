@@ -39,6 +39,9 @@ function M.load()
     Whitespace = { fg = p.subdued },
     SpecialKey = { fg = p.subdued },
     Conceal = { fg = p.muted },
+    LspInlayHint = { fg = p.comment },
+    LspCodeLens = { fg = p.comment },
+    LspCodeLensSeparator = { fg = p.comment },
     Directory = { fg = p.func },
     Title = { fg = p.func, bold = true },
 

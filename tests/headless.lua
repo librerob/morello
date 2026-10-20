@@ -9,6 +9,15 @@ local ok, err = pcall(function()
   local p = require("morello.palette")
   local function color(hex) return tonumber(hex:sub(2), 16) end
   local function hl(name) return vim.api.nvim_get_hl(0, { name = name, link = false }) end
+  local function check_lsp_annotations()
+    for _, name in ipairs({ "LspInlayHint", "LspCodeLens", "LspCodeLensSeparator" }) do
+      local attrs = hl(name)
+      assert(attrs.fg == color(p.comment), name .. " must use the readable comment color")
+      assert(attrs.bg == nil, name .. " must inherit its background")
+      assert(not attrs.italic, name .. " must stay upright with either comment style")
+    end
+    assert(hl("NonText").fg == color(p.subdued))
+  end
 
   -- Loading from a light environment must still select this dark scheme.
   vim.o.background = "light"
@@ -39,16 +48,18 @@ local ok, err = pcall(function()
   assert(lualine.normal.a.bg == p.func)
   assert(lualine.insert.a.bg == p.string)
   assert(hl("Comment").italic)
+  check_lsp_annotations()
   for index = 0, 15 do
     assert(vim.g["terminal_color_" .. index] == p.ansi[index])
   end
   theme.setup({ italic_comments = false })
   vim.cmd.colorscheme("morello")
   assert(not hl("Comment").italic, "Reload must clear previous italics")
+  check_lsp_annotations()
 end)
 if not ok then
   io.stderr:write(tostring(err) .. "\n")
   vim.cmd("cquit 1")
 end
-print("Morello: loading, reloading, syntax, diagnostics and terminal colors passed")
+print("Morello: loading, reloading, syntax, LSP annotations, diagnostics and terminal colors passed")
 vim.cmd("qa!")
