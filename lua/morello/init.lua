@@ -6,11 +6,16 @@ function M.setup(opts)
   options = vim.tbl_extend("force", options, opts or {})
 end
 
+function M.get_palette()
+  local name = vim.o.background == "light" and "morello.palette-light" or "morello.palette"
+  return require(name)
+end
+
 function M.load()
-  local p = require("morello.palette")
+  local p = M.get_palette()
+  package.loaded["lualine.themes.morello"] = nil
   vim.g.colors_name = nil
   vim.o.termguicolors = true
-  vim.o.background = "dark"
   vim.cmd("highlight clear")
   if vim.fn.exists("syntax_on") == 1 then
     vim.cmd("syntax reset")

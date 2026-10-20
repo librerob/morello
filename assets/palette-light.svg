@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="134" viewBox="0 0 960 134">
+<rect width="960" height="134" fill="#F8F0F3"/>
+<rect x="16" y="16" width="104" height="54" rx="2" fill="#F8F0F3" stroke="#D1BBC5"/>
+<text x="16" y="94" font-family="monospace" font-size="13" fill="#32232B">bg</text>
+<text x="16" y="115" font-family="monospace" font-size="12" fill="#66505D">#F8F0F3</text>
+<rect x="134" y="16" width="104" height="54" rx="2" fill="#783429" stroke="#D1BBC5"/>
+<text x="134" y="94" font-family="monospace" font-size="13" fill="#32232B">keyword</text>
+<text x="134" y="115" font-family="monospace" font-size="12" fill="#66505D">#783429</text>
+<rect x="252" y="16" width="104" height="54" rx="2" fill="#286E53" stroke="#D1BBC5"/>
+<text x="252" y="94" font-family="monospace" font-size="13" fill="#32232B">func</text>
+<text x="252" y="115" font-family="monospace" font-size="12" fill="#66505D">#286E53</text>
+<rect x="370" y="16" width="104" height="54" rx="2" fill="#626321" stroke="#D1BBC5"/>
+<text x="370" y="94" font-family="monospace" font-size="13" fill="#32232B">string</text>
+<text x="370" y="115" font-family="monospace" font-size="12" fill="#66505D">#626321</text>
+<rect x="488" y="16" width="104" height="54" rx="2" fill="#096983" stroke="#D1BBC5"/>
+<text x="488" y="94" font-family="monospace" font-size="13" fill="#32232B">type</text>
+<text x="488" y="115" font-family="monospace" font-size="12" fill="#66505D">#096983</text>
+<rect x="606" y="16" width="104" height="54" rx="2" fill="#97417B" stroke="#D1BBC5"/>
+<text x="606" y="94" font-family="monospace" font-size="13" fill="#32232B">constant</text>
+<text x="606" y="115" font-family="monospace" font-size="12" fill="#66505D">#97417B</text>
+<rect x="724" y="16" width="104" height="54" rx="2" fill="#765A68" stroke="#D1BBC5"/>
+<text x="724" y="94" font-family="monospace" font-size="13" fill="#32232B">comment</text>
+<text x="724" y="115" font-family="monospace" font-size="12" fill="#66505D">#765A68</text>
+<rect x="842" y="16" width="104" height="54" rx="2" fill="#32232B" stroke="#D1BBC5"/>
+<text x="842" y="94" font-family="monospace" font-size="13" fill="#32232B">fg</text>
+<text x="842" y="115" font-family="monospace" font-size="12" fill="#66505D">#32232B</text>
+</svg>

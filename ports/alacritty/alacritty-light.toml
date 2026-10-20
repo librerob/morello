@@ -1,0 +1,68 @@
+# Morello Light.
+# Standalone color config; also safe to import under [general].
+# Keep window opacity at 1.0 to retain the audited contrast ratios.
+
+[colors]
+draw_bold_text_with_bright_colors = false
+
+[colors.primary]
+background = "#F8F0F3"
+foreground = "#32232B"
+dim_foreground = "#66505D"
+bright_foreground = "#21171D"
+
+[colors.cursor]
+text = "#F8F0F3"
+cursor = "#32232B"
+
+[colors.vi_mode_cursor]
+text = "#F8F0F3"
+cursor = "#783429"
+
+[colors.selection]
+text = "#32232B"
+background = "#F4DEEA"
+
+[colors.search.matches]
+foreground = "#F8F0F3"
+background = "#626321"
+
+[colors.search.focused_match]
+foreground = "#F8F0F3"
+background = "#286E53"
+
+[colors.hints.start]
+foreground = "#F8F0F3"
+background = "#286E53"
+
+[colors.hints.end]
+foreground = "#F8F0F3"
+background = "#626321"
+
+[colors.footer_bar]
+foreground = "#32232B"
+background = "#FFF9FB"
+
+[colors.line_indicator]
+foreground = "#32232B"
+background = "#FFF9FB"
+
+[colors.normal]
+black = "#32232B"
+red = "#BD0F55"
+green = "#4D683C"
+yellow = "#964E07"
+blue = "#096983"
+magenta = "#97417B"
+cyan = "#286E65"
+white = "#EFE4EA"
+
+[colors.bright]
+black = "#765A68"
+red = "#AB235C"
+green = "#3E6737"
+yellow = "#815E17"
+blue = "#3B5E8C"
+magenta = "#824175"
+cyan = "#246968"
+white = "#FFF9FB"

@@ -1,4 +1,4 @@
-local p = require("morello.palette")
+local p = require("morello").get_palette()
 local function mode(accent)
   return {
     a = { fg = p.bg, bg = accent, gui = "bold" },

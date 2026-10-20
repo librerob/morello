@@ -1,0 +1,23 @@
+{
+  "name": "Morello Light",
+  "background": "#F8F0F3",
+  "foreground": "#32232B",
+  "cursorColor": "#32232B",
+  "selectionBackground": "#F4DEEA",
+  "black": "#32232B",
+  "red": "#BD0F55",
+  "green": "#4D683C",
+  "yellow": "#964E07",
+  "blue": "#096983",
+  "purple": "#97417B",
+  "cyan": "#286E65",
+  "white": "#EFE4EA",
+  "brightBlack": "#765A68",
+  "brightRed": "#AB235C",
+  "brightGreen": "#3E6737",
+  "brightYellow": "#815E17",
+  "brightBlue": "#3B5E8C",
+  "brightPurple": "#824175",
+  "brightCyan": "#246968",
+  "brightWhite": "#FFF9FB"
+}

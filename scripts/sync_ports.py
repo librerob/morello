@@ -7,22 +7,23 @@ from pathlib import Path
 import json
 
 ROOT = Path(__file__).resolve().parents[1]
-paths = {
-    'palette': 'palette.json',
-    'alacritty': 'ports/alacritty/alacritty.toml',
-    'kitty': 'ports/kitty/kitty.conf',
-    'lua': 'lua/morello/palette.lua',
-}
-
-data = json.loads((ROOT / paths['palette']).read_text(encoding='utf-8'))
-P, ANSI = data['colors'], data['ansi']
-
 def write(path, content):
     target = ROOT / path
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(content.strip() + '\n', encoding='utf-8', newline='\n')
 
-alacritty = f'''# {data["name"]}.
+def generate(variant):
+    suffix = '-light' if variant == 'light' else ''
+    paths = {
+        'palette': f'palette{suffix}.json',
+        'alacritty': f'ports/alacritty/alacritty{suffix}.toml',
+        'kitty': f'ports/kitty/kitty{suffix}.conf',
+        'lua': f'lua/morello/palette{suffix}.lua',
+    }
+    data = json.loads((ROOT / paths['palette']).read_text(encoding='utf-8'))
+    P, ANSI = data['colors'], data['ansi']
+
+    alacritty = f'''# {data["name"]}.
 # Standalone color config; also safe to import under [general].
 # Keep window opacity at 1.0 to retain the audited contrast ratios.
 
@@ -71,13 +72,13 @@ background = "{P['float']}"
 foreground = "{P['fg']}"
 background = "{P['float']}"
 '''
-for title, offset in [('normal',0),('bright',8)]:
-    alacritty += f'\n[colors.{title}]\n'
-    for i,key in enumerate(['black','red','green','yellow','blue','magenta','cyan','white']):
-        alacritty += f'{key} = "{ANSI[offset+i]}"\n'
-write(paths['alacritty'], alacritty)
-
-kitty = f'''# {data["name"]}.
+    for title, offset in [('normal',0),('bright',8)]:
+        alacritty += f'\n[colors.{title}]\n'
+        for i,key in enumerate(['black','red','green','yellow','blue','magenta','cyan','white']):
+            alacritty += f'{key} = "{ANSI[offset+i]}"\n'
+    write(paths['alacritty'], alacritty)
+    
+    kitty = f'''# {data["name"]}.
 # Include this file from kitty.conf; no font or keybinding overrides.
 # Keep background_opacity at 1.0 to retain audited contrast ratios.
 
@@ -110,15 +111,17 @@ mark3_background {P['constant']}
 
 # ANSI 0-15: normal, then bright.
 '''
-kitty += '\n'.join(f'color{i:<2} {c}' for i,c in enumerate(ANSI))
-write(paths['kitty'], kitty)
+    kitty += '\n'.join(f'color{i:<2} {c}' for i,c in enumerate(ANSI))
+    write(paths['kitty'], kitty)
+    
+    lua = [f'-- Generated from {paths["palette"]} by scripts/sync_ports.py.', 'local p = {']
+    lua += [f'  {k} = "{v}",' for k,v in P.items()]
+    lua += ['  ansi = {']
+    lua += [f'    [{i}] = "{c}",' for i,c in enumerate(ANSI)]
+    lua += ['  },','}','return p']
+    write(paths['lua'], '\n'.join(lua))
 
-lua = [f'-- Generated from {paths["palette"]} by scripts/sync_ports.py.', 'local p = {']
-lua += [f'  {k} = "{v}",' for k,v in P.items()]
-lua += ['  ansi = {']
-lua += [f'    [{i}] = "{c}",' for i,c in enumerate(ANSI)]
-lua += ['  },','}','return p']
-write(paths['lua'], '\n'.join(lua))
 
-
-print('Regenerated terminal ports and Neovim palette')
+for variant in ('dark', 'light'):
+    generate(variant)
+print('Regenerated dark and light terminal ports and Neovim palettes')

@@ -8,6 +8,7 @@ on:
       - 'colors/**'
       - 'examples/**'
       - 'scripts/capture.*'
+      - 'scripts/check_capture.py'
       - '.github/workflows/screenshots.yml'
   workflow_dispatch:
 permissions:
@@ -20,7 +21,7 @@ jobs:
       - name: Install terminal capture tools
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y xvfb kitty xdotool imagemagick fonts-jetbrains-mono fontconfig libgl1-mesa-dri shellcheck
+          sudo apt-get install -y xvfb kitty xdotool imagemagick fonts-jetbrains-mono fontconfig libgl1-mesa-dri shellcheck python3-pil
           curl --fail --location --retry 2 https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz -o "$RUNNER_TEMP/nvim.tar.gz"
           tar -xzf "$RUNNER_TEMP/nvim.tar.gz" -C "$RUNNER_TEMP"
           echo "$RUNNER_TEMP/nvim-linux-x86_64/bin" >> "$GITHUB_PATH"
@@ -32,7 +33,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add assets/neovim-lua.png assets/neovim-python.png assets/neovim-ui.png
+          git add assets/neovim-*.png
           if ! git diff --cached --quiet; then
             git commit -m 'Update Neovim screenshots'
             git pull --rebase origin main

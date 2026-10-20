@@ -10,6 +10,14 @@ The main accents do not have identical lightness: functions and strings sit a li
 
 Three candidate directions were compared on the same Python sample: cherry ink, ink violet, and rosewood. Violet felt too close to existing night palettes; rosewood felt too close to established earth tones. Cherry ink gave the clearest separate identity. These are subjective design judgments.
 
+## Light
+
+The light variant uses blush paper and cherry ink. Its ground has less pink chroma than the first proposal so that large empty areas stay quiet. Raised documentation panels move toward white; sidebars use a slightly deeper blush.
+
+The role relationships remain the same, but the accents are not inverted. Apricot becomes a restrained terracotta, celadon becomes jade, and citrine becomes a dry olive. The terracotta is darker than the green accents to help preserve a distinction when hue differences are reduced. Types stay blue and constants stay rose. These choices were compared in Lua, Python, and TypeScript previews; color-vision simulations are approximate design aids, not a certification or a substitute for user testing.
+
+Every core text role is checked against all nine light surfaces, including selection and diff fills. The dark variant instead supplies an explicit foreground for built-in selection and diff highlights. Light ANSI white and bright white remain pale utility slots; they are unsuitable as text on the light ground. Bright ANSI colors otherwise stay dark enough to read, rather than simply adding luminance.
+
 ## Research
 
 The following primary sources were reviewed on 20 October 2026. This is a focused comparison, not an exhaustive search of every theme or a claim that any hue belongs to one project.

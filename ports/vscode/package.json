@@ -1,8 +1,8 @@
 {
   "name": "morello-theme",
   "displayName": "Morello",
-  "description": "Dark cherry ink, celadon functions and apricot keywords.",
-  "version": "0.1.1",
+  "description": "Cherry ink and blush paper. Dark and light colors for editors and terminals.",
+  "version": "0.2.0",
   "publisher": "librerob",
   "engines": {
     "vscode": "^1.85.0"
@@ -21,6 +21,11 @@
         "label": "Morello",
         "uiTheme": "vs-dark",
         "path": "./themes/morello-color-theme.json"
+      },
+      {
+        "label": "Morello Light",
+        "uiTheme": "vs",
+        "path": "./themes/morello-light-color-theme.json"
       }
     ]
   }

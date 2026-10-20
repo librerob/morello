@@ -1,6 +1,7 @@
 -- Run inside Kitty; scripts/capture.sh captures the actual terminal window.
 vim.opt.runtimepath:prepend(vim.fn.getcwd())
 vim.o.termguicolors = true
+vim.o.background = vim.env.MORELLO_VARIANT or "dark"
 vim.o.number = true
 vim.o.relativenumber = false
 vim.o.cursorline = true
@@ -21,11 +22,14 @@ local view = vim.env.MORELLO_VIEW or "lua"
 if view == "python" then
   vim.cmd("edit examples/document.py")
   vim.api.nvim_win_set_cursor(0, { 15, 12 })
+elseif view == "typescript" then
+  vim.cmd("edit examples/library.ts")
+  vim.api.nvim_win_set_cursor(0, { 12, 4 })
 else
   vim.cmd("edit examples/library.lua")
   vim.treesitter.start(0, "lua")
 end
-if view ~= "python" then vim.api.nvim_win_set_cursor(0, { 23, 16 }) end
+if view == "lua" or view == "ui" then vim.api.nvim_win_set_cursor(0, { 23, 16 }) end
 if view == "ui" then
   vim.fn.setreg("/", "metadata")
   vim.o.hlsearch = true
