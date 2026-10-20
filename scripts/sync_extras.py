@@ -1,4 +1,4 @@
-"""Regenerate Ghostty, Windows Terminal and VS Code colors from palette.json."""
+"""Regenerate extra terminal ports and VS Code themes from both palettes."""
 from pathlib import Path
 import json
 
@@ -30,6 +30,42 @@ def generate(variant):
                'cursorColor': p['cursor'], 'selectionBackground': p['selection']}
     windows.update(zip(slots, ansi))
     write_json(f'ports/windows-terminal/{data["name"]}.json', windows)
+
+    xfce = {
+        'Name': data['name'], 'ColorForeground': p['fg'], 'ColorBackground': p['bg'],
+        'ColorCursor': p['cursor'], 'ColorCursorForeground': p['bg'], 'ColorCursorUseDefault': 'FALSE',
+        'ColorSelection': p['fg'], 'ColorSelectionBackground': p['selection'],
+        'ColorSelectionUseDefault': 'FALSE', 'ColorPalette': ';'.join(ansi),
+        'ColorBoldUseDefault': 'TRUE', 'ColorBoldIsBright': 'FALSE',
+        'ColorUseTheme': 'FALSE', 'ColorBackgroundVary': 'FALSE', 'TabActivityColor': p['focus'],
+    }
+    write(f'ports/xfce-terminal/{data["name"]}.theme',
+          '[Scheme]\n' + '\n'.join(f'{key}={value}' for key, value in xfce.items()))
+
+    def rgb(color):
+        return ','.join(str(int(color[i:i+2], 16)) for i in (1, 3, 5))
+
+    konsole = ['[General]', f'Description={data["name"]}', 'Opacity=1',
+               'Blur=false', 'ColorRandomization=false', 'Wallpaper=', '']
+    entries = {'Foreground': p['fg'], 'ForegroundIntense': p['bright'],
+               'ForegroundFaint': p['muted'], 'Background': p['bg'],
+               'BackgroundIntense': p['bg'], 'BackgroundFaint': p['bg']}
+    for index in range(8):
+        entries[f'Color{index}'] = ansi[index]
+        entries[f'Color{index}Intense'] = ansi[index + 8]
+        entries[f'Color{index}Faint'] = ansi[index]
+    for name, color in entries.items():
+        konsole += [f'[{name}]', f'Color={rgb(color)}', '']
+    write(f'ports/konsole/{data["name"]}.colorscheme', '\n'.join(konsole))
+
+    # Older foot versions use [colors]. The default inverse cursor matches ours.
+    foot = [f'foreground={p["fg"][1:]}', f'background={p["bg"][1:]}',
+            f'selection-foreground={p["fg"][1:]}', f'selection-background={p["selection"][1:]}']
+    foot += [f'{"regular" if i < 8 else "bright"}{i % 8}={color[1:]}' for i, color in enumerate(ansi)]
+    write(f'ports/foot/morello{suffix}-legacy.ini',
+          '# For foot before 1.26. Colors only.\n[colors]\n' + '\n'.join(foot))
+    foot += [f'cursor={p["bg"][1:]} {p["cursor"][1:]}', f'urls={p["string"][1:]}']
+    foot_sections[variant] = f'[colors-{variant}]\n' + '\n'.join(foot)
 
     roles = {
         'foreground': 'fg', 'descriptionForeground': 'muted', 'errorForeground': 'error',
@@ -118,8 +154,11 @@ def generate(variant):
     write_json(f'ports/vscode/themes/morello{suffix}-color-theme.json',theme)
 
 
+foot_sections = {}
 for variant in ('dark', 'light'):
     generate(variant)
+write('ports/foot/morello.ini', '# Morello for foot 1.26+. Both variants; colors only.\n'
+      + '\n\n'.join(foot_sections.values()))
 data = json.loads((ROOT / 'palette.json').read_text(encoding='utf-8'))
 write_json('ports/vscode/package.json', {
     'name':'morello-theme', 'displayName':'Morello', 'description':'Cherry ink and blush paper. Dark and light colors for editors and terminals.',
@@ -131,4 +170,4 @@ write_json('ports/vscode/package.json', {
         {'label':'Morello Light','uiTheme':'vs','path':'./themes/morello-light-color-theme.json'},
     ]},
 })
-print('Regenerated dark and light Ghostty, Windows Terminal and VS Code ports')
+print('Regenerated dark and light extra terminal ports and VS Code themes')

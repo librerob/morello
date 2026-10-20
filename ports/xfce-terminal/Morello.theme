@@ -1,0 +1,16 @@
+[Scheme]
+Name=Morello
+ColorForeground=#E8DDE2
+ColorBackground=#2B1B23
+ColorCursor=#E8DDE2
+ColorCursorForeground=#2B1B23
+ColorCursorUseDefault=FALSE
+ColorSelection=#E8DDE2
+ColorSelectionBackground=#573B4B
+ColorSelectionUseDefault=FALSE
+ColorPalette=#392831;#F481AD;#A8C99D;#E5BF88;#A5BECA;#D7ADC3;#9ACDC3;#D9CBD2;#AA94A0;#FFA8CA;#C3DEAF;#F3D4A4;#C0D6DF;#E8C5D8;#B9E3D8;#F5EBEF
+ColorBoldUseDefault=TRUE
+ColorBoldIsBright=FALSE
+ColorUseTheme=FALSE
+ColorBackgroundVary=FALSE
+TabActivityColor=#A8D8BF

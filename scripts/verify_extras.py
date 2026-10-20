@@ -1,8 +1,16 @@
 """Check shared colors and structural validity in the extra ports."""
 from pathlib import Path
 import json
+import configparser
 
 ROOT = Path(__file__).resolve().parents[1]
+def ini(path):
+    parser = configparser.ConfigParser(interpolation=None)
+    parser.optionxform = str
+    parser.read(ROOT / path, encoding='utf-8')
+    return parser
+
+
 def verify(variant):
     suffix = '-light' if variant == 'light' else ''
     pdata = json.loads((ROOT / f'palette{suffix}.json').read_text(encoding='utf-8'))
@@ -17,6 +25,41 @@ def verify(variant):
     ghostty = (ROOT / f'ports/ghostty/{pdata["name"]}').read_text(encoding='utf-8').splitlines()
     assert f'background = {p["bg"]}' in ghostty
     assert [line.split('=', 2)[2] for line in ghostty if line.startswith('palette = ')] == ansi
+    xfce = ini(f'ports/xfce-terminal/{pdata["name"]}.theme')['Scheme']
+    assert xfce['Name'] == pdata['name']
+    assert xfce['ColorPalette'].split(';') == ansi
+    for key, role in {'ColorForeground': 'fg', 'ColorBackground': 'bg', 'ColorCursor': 'cursor',
+                      'ColorCursorForeground': 'bg', 'ColorSelection': 'fg',
+                      'ColorSelectionBackground': 'selection', 'TabActivityColor': 'focus'}.items():
+        assert xfce[key] == p[role]
+    for key in ('ColorCursorUseDefault', 'ColorSelectionUseDefault', 'ColorUseTheme',
+                'ColorBackgroundVary', 'ColorBoldIsBright'):
+        assert not xfce.getboolean(key)
+
+    konsole = ini(f'ports/konsole/{pdata["name"]}.colorscheme')
+    def hex_color(section):
+        values = [int(n) for n in konsole[section]['Color'].split(',')]
+        assert len(values) == 3 and all(0 <= n <= 255 for n in values)
+        return '#' + ''.join(f'{n:02X}' for n in values)
+    assert konsole['General']['Description'] == pdata['name']
+    assert konsole['General'].getfloat('Opacity') == 1
+    assert not konsole['General'].getboolean('ColorRandomization')
+    for name, role in {'Foreground': 'fg', 'ForegroundIntense': 'bright', 'ForegroundFaint': 'muted',
+                       'Background': 'bg', 'BackgroundIntense': 'bg', 'BackgroundFaint': 'bg'}.items():
+        assert hex_color(name) == p[role]
+    for index in range(8):
+        assert hex_color(f'Color{index}') == ansi[index]
+        assert hex_color(f'Color{index}Intense') == ansi[index + 8]
+        assert hex_color(f'Color{index}Faint') == ansi[index]
+
+    modern = ini('ports/foot/morello.ini')[f'colors-{variant}']
+    legacy = ini(f'ports/foot/morello{suffix}-legacy.ini')['colors']
+    for section in (modern, legacy):
+        for key, role in {'foreground': 'fg', 'background': 'bg',
+                          'selection-foreground': 'fg', 'selection-background': 'selection'}.items():
+            assert section[key] == p[role][1:]
+        assert [section[f'{"regular" if i < 8 else "bright"}{i % 8}'] for i in range(16)] == [c[1:] for c in ansi]
+    assert modern['cursor'] == f'{p["bg"][1:]} {p["cursor"][1:]}'
     theme = json.loads((ROOT / f'ports/vscode/themes/morello{suffix}-color-theme.json').read_text(encoding='utf-8'))
     package = json.loads((ROOT / 'ports/vscode/package.json').read_text(encoding='utf-8'))
     assert package['version'] == pdata['version']
@@ -45,4 +88,4 @@ def verify(variant):
 
 for variant in ('dark', 'light'):
     verify(variant)
-print('Dark and light Ghostty, Windows Terminal and VS Code colors agree with their palettes')
+print('Dark and light extra terminal ports and VS Code colors agree with their palettes')

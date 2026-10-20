@@ -40,6 +40,21 @@ require("morello").setup({ italic_comments = true })
 
 Includes standard syntax, Treesitter, LSP semantic tokens, diagnostics, diffs, and terminal colors. There are highlight mappings for Telescope, Neo-tree, Oil, Gitsigns, Which-key, blink.cmp, nvim-cmp, and Snacks. Their plugins and language parsers are installed separately. For lualine, set `options.theme = "morello"` in your lualine setup.
 
+### Vim
+
+Vim 8.2+ with truecolor support, or gVim. Copy [colors/morello.vim](colors/morello.vim) to `~/.vim/colors/morello.vim`, or install this repository through your Vim plugin manager. In your vimrc:
+
+```vim
+syntax enable
+set termguicolors
+set background=dark
+colorscheme morello
+```
+
+Use `set background=light` for the light variant. For italic comments, add `let g:morello_italic_comments = 1` before `colorscheme morello`.
+
+The Vim port uses the same palettes and core UI and syntax definitions as Neovim. Token coloring can differ because Vim's syntax files and Neovim's Treesitter or LSP highlighting classify code differently. Neovim plugin integrations belong to the Neovim port. Truecolor is required for the documented HEX colors; there is no separate 256-color approximation.
+
 ### Terminals
 
 | App | Dark | Light | Setup |
@@ -48,8 +63,22 @@ Includes standard syntax, Treesitter, LSP semantic tokens, diagnostics, diffs, a
 | Kitty | [kitty.conf](ports/kitty/kitty.conf) | [kitty-light.conf](ports/kitty/kitty-light.conf) | Include your chosen file after other color settings. |
 | Ghostty | [Morello](ports/ghostty/Morello) | [Morello Light](ports/ghostty/Morello%20Light) | Copy to `~/.config/ghostty/themes/`, then set `theme = Morello` or `theme = Morello Light`. |
 | Windows Terminal | [Morello.json](ports/windows-terminal/Morello.json) | [Morello Light.json](ports/windows-terminal/Morello%20Light.json) | Add either object to `schemes`, then choose it in your profile's Appearance settings. |
+| Xfce Terminal | [Morello.theme](ports/xfce-terminal/Morello.theme) | [Morello Light.theme](ports/xfce-terminal/Morello%20Light.theme) | Copy to `~/.config/xfce4/terminal/colorschemes/`, reopen Preferences → Colors, then choose the preset. |
+| foot | [morello.ini](ports/foot/morello.ini) | Both variants in the same file | See the include example below. |
+| Konsole | [Morello.colorscheme](ports/konsole/Morello.colorscheme) | [Morello Light.colorscheme](ports/konsole/Morello%20Light.colorscheme) | Copy to `~/.local/share/konsole/`, then select it under Edit Current Profile → Appearance. |
 
 These files set colors only. Editor syntax highlighting needs its editor theme too.
+
+For current foot, copy `ports/foot/morello.ini` to `~/.config/foot/morello.ini`. Add the following in the main section of `foot.ini`, before other section headers:
+
+```ini
+include=~/.config/foot/morello.ini
+initial-color-theme=dark
+```
+
+Set `initial-color-theme=light` for blush paper. The file uses the current [`colors-dark` and `colors-light` sections](https://man.archlinux.org/man/foot.ini.5.en). For foot before 1.26, include [morello-legacy.ini](ports/foot/morello-legacy.ini) or [morello-light-legacy.ini](ports/foot/morello-light-legacy.ini) instead, and omit `initial-color-theme`.
+
+Konsole controls cursor and selection behavior through profile settings. Its port specifies the shared foreground, background, normal/bright ANSI colors, and faint entries; it does not force selection colors through unsupported scheme keys.
 
 ### VS Code
 
@@ -96,9 +125,11 @@ Body text contrast is **12.36:1** in dark and **13.29:1** in light. Core syntax,
 ```sh
 python scripts/sync_ports.py
 python scripts/sync_extras.py
+python scripts/sync_vim.py
 python scripts/verify.py
 python scripts/verify_extras.py
 nvim --headless -u NONE -l tests/headless.lua
+vim -Nu NONE -n -es -S tests/vim.vim
 ```
 
 To refresh both sets of screenshots on Linux, install Kitty, Xvfb, xdotool, ImageMagick, JetBrains Mono, Python 3 with Pillow, and Neovim, then run:

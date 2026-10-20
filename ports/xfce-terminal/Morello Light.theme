@@ -1,0 +1,16 @@
+[Scheme]
+Name=Morello Light
+ColorForeground=#32232B
+ColorBackground=#F8F0F3
+ColorCursor=#32232B
+ColorCursorForeground=#F8F0F3
+ColorCursorUseDefault=FALSE
+ColorSelection=#32232B
+ColorSelectionBackground=#F4DEEA
+ColorSelectionUseDefault=FALSE
+ColorPalette=#32232B;#BD0F55;#4D683C;#964E07;#096983;#97417B;#286E65;#EFE4EA;#765A68;#AB235C;#3E6737;#815E17;#3B5E8C;#824175;#246968;#FFF9FB
+ColorBoldUseDefault=TRUE
+ColorBoldIsBright=FALSE
+ColorUseTheme=FALSE
+ColorBackgroundVary=FALSE
+TabActivityColor=#286E53
