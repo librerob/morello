@@ -26,11 +26,13 @@ jobs:
       - name: Check effective highlight colors and editing states
         run: nvim --headless -u NONE -l tests/highlights.lua
       - name: Install plugin fixtures
+        if: ${{ !cancelled() }}
         run: |
           git clone --depth=1 https://github.com/nvim-lualine/lualine.nvim.git "$RUNNER_TEMP/lualine"
           git clone --depth=1 https://github.com/nvim-lua/plenary.nvim.git "$RUNNER_TEMP/plenary"
           git clone --depth=1 --branch 0.1.8 https://github.com/nvim-telescope/telescope.nvim.git "$RUNNER_TEMP/telescope"
       - name: Check real lualine and Telescope rendering
+        if: ${{ !cancelled() }}
         run: nvim --headless -u NONE -l tests/plugins.lua
   terminals:
     runs-on: ubuntu-latest
@@ -43,6 +45,7 @@ jobs:
       - name: Check Kitty's native configuration parser
         run: kitty +runpy 'import runpy; runpy.run_path("tests/kitty.py", run_name="__main__")'
       - name: Query colors inside the running terminals
+        if: ${{ !cancelled() }}
         run: dbus-run-session -- xvfb-run -a python3 tests/terminals.py
       - name: Check capture validation and reject blank frames
         if: ${{ !cancelled() }}
@@ -65,3 +68,14 @@ jobs:
         env:
           MORELLO_NODE_MODULES: ${{ runner.temp }}/morello-node/node_modules
         run: xvfb-run -a node tests/vscode.cjs
+  ghostty:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install official Ghostty binary through Homebrew
+        run: brew install --cask ghostty
+      - name: Validate both variants with Ghostty
+        run: |
+          /Applications/Ghostty.app/Contents/MacOS/ghostty +version
+          /Applications/Ghostty.app/Contents/MacOS/ghostty +validate-config --config-file=ports/ghostty/Morello
+          /Applications/Ghostty.app/Contents/MacOS/ghostty +validate-config --config-file="ports/ghostty/Morello Light"

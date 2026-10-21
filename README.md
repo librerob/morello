@@ -11,11 +11,11 @@
 
 <p align="center">Cherry ink at night, blush paper by day.<br>A dark and light colorscheme for editors and terminals.</p>
 
-**Dark** · celadon functions, apricot keywords, and pale citrine strings.
+<p align="center"><strong>Dark</strong> · celadon functions, apricot keywords, and pale citrine strings.</p>
 
 ![Morello Dark in Neovim](assets/neovim-lua.png)
 
-**Light** · jade functions, terracotta keywords, and olive citrine strings.
+<p align="center"><strong>Light</strong> · jade functions, terracotta keywords, and olive citrine strings.</p>
 
 ![Morello Light in Neovim](assets/neovim-light-lua.png)
 

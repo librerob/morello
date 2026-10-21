@@ -66,7 +66,7 @@ local ok, err = pcall(function()
         for column = 1, #line do
           if not line:sub(column, column):match("%s") then
             local id = vim.fn.synIDtrans(vim.fn.synID(row, column, 1))
-            local color = vim.fn.synIDattr(id, "fg#", "gui")
+            local color = vim.fn.synIDattr(id, "fg", "gui")
             if color ~= "" then
               color = color:upper()
               assert(values[color], path .. ":" .. row .. " off-palette token " .. color)
@@ -75,7 +75,7 @@ local ok, err = pcall(function()
           end
         end
       end
-      assert(seen[p.keyword], path .. " did not resolve keywords")
+      assert(seen[p.keyword], path .. " did not resolve keywords: filetype=" .. vim.bo.filetype .. " syntax=" .. vim.bo.syntax .. " seen=" .. vim.inspect(seen))
       assert(seen[p.string], path .. " did not resolve strings")
       assert(seen[p.comment], path .. " did not resolve comments")
     end
