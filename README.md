@@ -1,13 +1,15 @@
 <a name="morello"></a>
-<h1>
+<p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/wordmark-dark.png">
-    <source media="(prefers-color-scheme: light)" srcset="assets/wordmark-light.png">
-    <img alt="Morello" src="assets/wordmark-light.png" width="330" height="100">
+    <source media="(prefers-color-scheme: dark)" srcset="assets/cherry-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="assets/cherry-light.svg">
+    <img alt="" src="assets/cherry-light.svg" width="64" height="64">
   </picture>
-</h1>
+</p>
 
-Cherry ink at night, blush paper by day. A dark and light colorscheme for editors and terminals.
+<h1 align="center">Morello</h1>
+
+<p align="center">Cherry ink at night, blush paper by day.<br>A dark and light colorscheme for editors and terminals.</p>
 
 **Dark** · celadon functions, apricot keywords, and pale citrine strings.
 
