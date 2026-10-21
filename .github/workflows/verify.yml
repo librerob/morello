@@ -72,8 +72,10 @@ jobs:
       - name: Check Base16 YAML and native colorls loading
         run: ruby tests/apps.rb --colorls
       - name: Check native bat cache and syntax rendering
+        if: ${{ !cancelled() }}
         run: python3 tests/bat.py --bat batcat
       - name: Check native Emacs and Doom theme loading
+        if: ${{ !cancelled() }}
         env:
           DOOM_THEMES_DIR: ${{ github.workspace }}/.ci/doom-themes
         run: emacs -Q --batch -l tests/emacs.el -f ert-run-tests-batch-and-exit

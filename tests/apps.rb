@@ -69,7 +69,7 @@ if ARGV.include?('--colorls')
       suffix = variant == 'light' ? '-light' : ''
       p = JSON.parse(File.read(File.join(ROOT, "palette#{suffix}.json"))).fetch('colors')
       rgb = p.fetch('func').delete_prefix('#').scan(/../).map { |n| n.to_i(16) }.join(';')
-      check(output.include?("38;2;#{rgb}"), 'colorls did not use the custom directory color')
+      check(output.include?("38;2;#{rgb}"), "colorls did not use the custom directory color: #{output.inspect}")
     end
   end
 end
