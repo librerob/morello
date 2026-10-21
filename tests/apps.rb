@@ -30,8 +30,8 @@ keys = %w[unrecognized_file recognized_file executable_file dir dead_link link s
   suffix = variant == 'light' ? '-light' : ''
   palette = JSON.parse(File.read(File.join(ROOT, "palette#{suffix}.json")))
   p = palette.fetch('colors')
-  base16 = YAML.safe_load_file(File.join(ROOT, "ports/base16/morello#{suffix}.yaml"))
-  legacy = YAML.safe_load_file(File.join(ROOT, "ports/base16/legacy/morello#{suffix}.yaml"))
+  base16 = YAML.safe_load(File.read(File.join(ROOT, "ports/base16/morello#{suffix}.yaml")))
+  legacy = YAML.safe_load(File.read(File.join(ROOT, "ports/base16/legacy/morello#{suffix}.yaml")))
   check(base16.fetch('system') == 'base16' && base16.fetch('variant') == variant, 'Base16 metadata')
   colors = base16.fetch('palette')
   check(colors.keys.to_set == (0...16).map { |i| format('base%02X', i) }.to_set, 'Base16 slot coverage')
@@ -44,7 +44,7 @@ keys = %w[unrecognized_file recognized_file executable_file dir dead_link link s
     check(colors.fetch(key) == p.fetch(role), "Base16 role mismatch: #{key}")
   end
 
-  colorls = YAML.safe_load_file(File.join(ROOT, "ports/colorls/#{variant}_colors.yaml"))
+  colorls = YAML.safe_load(File.read(File.join(ROOT, "ports/colorls/#{variant}_colors.yaml")))
   check(colorls.keys.to_set == keys.to_set, 'colorls key coverage')
   colorls.each do |key, name|
     slots = { 'red' => 1, 'green' => 2, 'yellow' => 3, 'blue' => 4, 'magenta' => 5, 'cyan' => 6, 'white' => 7 }

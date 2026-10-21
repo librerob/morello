@@ -41,7 +41,7 @@ Focused searches for Morello as a terminal or editor colorscheme did not surface
 
 ## Adoption hypothesis
 
-Morello has a plausible reason to be tried: its dark cherry background is recognizable in an ordinary code screenshot, its main syntax relationships are easy to describe, and its color specification is shared across two editors and four terminals. The comment contrast and UI state checks give people a reason to keep using it after the first screenshot.
+Morello has a plausible reason to be tried: its dark cherry background is recognizable in an ordinary code screenshot, its main syntax relationships are easy to describe, and its color specification is shared across the editor and terminal ports. The comment contrast and UI state checks give people a reason to keep using it after the first screenshot.
 
 None of that predicts that it will exceed Dracula, Gruvbox, Nord, or Rosé Pine. Existing themes have years of maintenance, ports, community participation, and visibility. The next useful evidence would be preference comparisons with names hidden and actual use over several days. No user study or retention data has been collected for this palette.
 

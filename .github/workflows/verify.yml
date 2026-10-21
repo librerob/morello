@@ -35,13 +35,19 @@ jobs:
       - name: Check colorscheme loading and reloading
         run: '"$RUNNER_TEMP/nvim-linux-x86_64/bin/nvim" --headless -u NONE -l tests/headless.lua'
   vim-and-foot:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-22.04, ubuntu-latest]
     steps:
       - uses: actions/checkout@v4
       - name: Install Vim and foot
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y vim-nox foot
+          vim --version | head -n 3
+          foot --version
       - name: Check Vim loading, reloading and variant switching
         run: vim -Nu NONE -n -es -S tests/vim.vim
       - name: Check foot configuration with its native parser
@@ -55,7 +61,11 @@ jobs:
             foot --check-config --config ports/foot/morello-light-legacy.ini
           fi
   apps:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-22.04, ubuntu-latest]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/checkout@v4
@@ -69,6 +79,8 @@ jobs:
           sudo apt-get update -qq
           sudo apt-get install -y bat emacs-nox ruby ruby-dev
           sudo gem install --no-document colorls --version 1.5.0
+          emacs --version | head -n 1
+          batcat --version
       - name: Check Base16 YAML and native colorls loading
         run: ruby tests/apps.rb --colorls
       - name: Check native bat cache and syntax rendering

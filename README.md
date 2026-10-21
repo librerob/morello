@@ -157,6 +157,8 @@ vim -Nu NONE -n -es -S tests/vim.vim
 
 CI also loads the Emacs and Doom themes, rebuilds bat's theme cache and checks rendered syntax colors, parses the YAML ports, and runs colorls with both variants. Application-specific tests use the tools listed in [the workflow](.github/workflows/verify.yml).
 
+[Test coverage and limits](docs/TESTING.md).
+
 To refresh both sets of screenshots on Linux, install Kitty, Xvfb, xdotool, ImageMagick, JetBrains Mono, Python 3 with Pillow, and Neovim, then run:
 
 ```sh

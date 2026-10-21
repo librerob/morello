@@ -25,16 +25,18 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        version: [v0.10.4, stable]
+        version: [v0.10.0, v0.10.4, stable]
     steps:
       - uses: actions/checkout@v4
       - name: Download official Neovim
         env:
           VERSION: ${{ matrix.version }}
         run: |
-          curl --fail --location --retry 2 "https://github.com/neovim/neovim/releases/download/$VERSION/nvim-linux-x86_64.tar.gz" -o "$RUNNER_TEMP/nvim.tar.gz"
+          asset=nvim-linux-x86_64
+          if [[ $VERSION == v0.10.0 ]]; then asset=nvim-linux64; fi
+          curl --fail --location --retry 2 "https://github.com/neovim/neovim/releases/download/$VERSION/$asset.tar.gz" -o "$RUNNER_TEMP/nvim.tar.gz"
           tar -xzf "$RUNNER_TEMP/nvim.tar.gz" -C "$RUNNER_TEMP"
-          echo "$RUNNER_TEMP/nvim-linux-x86_64/bin" >> "$GITHUB_PATH"
+          echo "$RUNNER_TEMP/$asset/bin" >> "$GITHUB_PATH"
       - name: Check loading, reloading and both variants
         run: nvim --headless -u NONE -l tests/headless.lua
       - name: Check effective highlight colors and editing states
@@ -87,6 +89,10 @@ jobs:
           path: test-results/*.png
   vscode:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        version: [1.85.2, stable]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -100,6 +106,7 @@ jobs:
       - name: Load both themes and inspect resolved colors and syntax
         env:
           MORELLO_NODE_MODULES: ${{ runner.temp }}/morello-node/node_modules
+          MORELLO_VSCODE_VERSION: ${{ matrix.version }}
         run: xvfb-run -a node tests/vscode.cjs
   ghostty:
     runs-on: macos-latest
