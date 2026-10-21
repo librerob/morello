@@ -256,7 +256,7 @@ def generate(variant):
         values = ' '.join(f':{key} ' + ("'" if isinstance(value, (Symbol, dict)) else '') + lisp(value)
                           for key, value in attrs.items())
         lines.append(f'   ({face} {values})')
-    lines += ['  )', f"  ((frame-background-mode '{variant})", f'   (ansi-color-names-vector {vector})))',
+    lines += ['  )', f"  ((frame-background-mode ''{variant})", f'   (ansi-color-names-vector {vector})))',
               '', f';;; {doom_name}-theme.el ends here']
     write(f'ports/doom-emacs/{doom_name}-theme.el', '\n'.join(lines))
 

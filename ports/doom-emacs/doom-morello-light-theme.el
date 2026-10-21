@@ -229,7 +229,7 @@
    (vterm-color-14 :foreground "#246968" :background "#246968")
    (vterm-color-15 :foreground "#FFF9FB" :background "#FFF9FB")
   )
-  ((frame-background-mode 'light)
+  ((frame-background-mode ''light)
    (ansi-color-names-vector ["#32232B" "#BD0F55" "#4D683C" "#964E07" "#096983" "#97417B" "#286E65" "#EFE4EA"])))
 
 ;;; doom-morello-light-theme.el ends here

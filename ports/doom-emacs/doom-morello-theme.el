@@ -229,7 +229,7 @@
    (vterm-color-14 :foreground "#B9E3D8" :background "#B9E3D8")
    (vterm-color-15 :foreground "#F5EBEF" :background "#F5EBEF")
   )
-  ((frame-background-mode 'dark)
+  ((frame-background-mode ''dark)
    (ansi-color-names-vector ["#392831" "#F481AD" "#A8C99D" "#E5BF88" "#A5BECA" "#D7ADC3" "#9ACDC3" "#D9CBD2"])))
 
 ;;; doom-morello-theme.el ends here
