@@ -1029,7 +1029,7 @@
       "pass": true
     },
     {
-      "pair": "selected completion/tab",
+      "pair": "selected tab/wildmenu",
       "foreground": "#2B1B23",
       "background": "#A8D8BF",
       "ratio": 10.3132,

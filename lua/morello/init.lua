@@ -67,11 +67,13 @@ function M.load()
     WinBar = { fg = p.fg, bg = p.bg },
     WinBarNC = { fg = p.muted, bg = p.bg },
     Pmenu = { fg = p.fg, bg = p.float },
-    PmenuSel = { fg = p.bg, bg = p.func },
+    PmenuSel = { fg = p.fg, bg = p.selection },
     PmenuKind = { fg = p.type, bg = p.float },
-    PmenuKindSel = { fg = p.bg, bg = p.func },
+    PmenuKindSel = { fg = p.type, bg = p.selection },
     PmenuExtra = { fg = p.muted, bg = p.float },
-    PmenuExtraSel = { fg = p.bg, bg = p.func },
+    PmenuExtraSel = { fg = p.muted, bg = p.selection },
+    PmenuMatch = { fg = p.func },
+    PmenuMatchSel = { fg = p.func, bg = p.selection },
     PmenuSbar = { bg = p.line },
     PmenuThumb = { bg = p.subdued },
     WildMenu = { fg = p.bg, bg = p.func },
@@ -202,8 +204,8 @@ function M.load()
     WhichKeySeparator = "Delimiter", WhichKeyBorder = "FloatBorder",
     BlinkCmpMenu = "Pmenu", BlinkCmpMenuBorder = "FloatBorder",
     BlinkCmpDoc = "NormalFloat", BlinkCmpDocBorder = "FloatBorder",
-    BlinkCmpLabel = "Pmenu", BlinkCmpLabelMatch = "Function", BlinkCmpKind = "Type",
-    CmpItemAbbr = "Pmenu", CmpItemAbbrMatch = "Function", CmpItemKind = "Type",
+    BlinkCmpLabelMatch = "Function", BlinkCmpKind = "Type",
+    CmpItemAbbrMatch = "Function", CmpItemKind = "Type",
     SnacksNormal = "NormalFloat", SnacksNormalNC = "NormalFloat", SnacksBorder = "FloatBorder",
     SnacksPickerMatch = "Function", SnacksPickerSelected = "PmenuSel",
     MiniIndentscopeSymbol = "Comment", IblIndent = "NonText", IblScope = "Comment",
@@ -214,6 +216,9 @@ function M.load()
   groups.NeoTreeNormal = { fg = p.fg, bg = p.panel }
   groups.NeoTreeNormalNC = { fg = p.fg, bg = p.panel }
   groups.NeoTreeFileName = { fg = p.fg }
+  -- Label spans inherit the row's selection background in completion menus.
+  groups.BlinkCmpLabel = { fg = p.fg }
+  groups.CmpItemAbbr = { fg = p.fg }
 
   for severity, color in pairs({ Error = p.error, Warn = p.warning, Info = p.info, Hint = p.hint }) do
     groups["Diagnostic" .. severity] = { fg = color }

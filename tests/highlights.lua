@@ -58,6 +58,14 @@ local ok, err = pcall(function()
       end
     end
     assert(#leaked == 0, variant .. " leaked UI colors: " .. table.concat(leaked, ", "))
+    local selected = vim.api.nvim_get_hl(0, { name = "PmenuSel", link = false })
+    for _, name in ipairs({ "PmenuMatchSel", "PmenuKindSel", "PmenuExtraSel", "TelescopeMatching", "CmpItemAbbrMatch", "BlinkCmpLabelMatch" }) do
+      local attrs = vim.api.nvim_get_hl(0, { name = name, link = false })
+      assert(contrast(hex(attrs.fg), hex(selected.bg)) >= 4.5, name .. " disappears on a selected row")
+    end
+    for _, name in ipairs({ "CmpItemAbbr", "BlinkCmpLabel" }) do
+      assert(vim.api.nvim_get_hl(0, { name = name, link = false }).bg == nil, name .. " hides the selected row background")
+    end
     for _, path in ipairs({ "examples/library.lua", "examples/document.py", "examples/library.ts" }) do
       vim.cmd.edit(path)
       -- The preview samples omit Python comments and TypeScript string literals.
