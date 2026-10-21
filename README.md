@@ -91,6 +91,18 @@ Konsole controls cursor and selection behavior through profile settings. Its por
 
 The [VS Code port](ports/vscode) includes both variants, workbench colors, TextMate scopes, semantic tokens, and matching terminal palettes. It is not published on the Marketplace. To try it locally, copy that directory into `~/.vscode/extensions/librerob.morello-theme-0.2.0`, reload VS Code, then choose **Morello** or **Morello Light** from **Preferences: Color Theme**.
 
+### More apps
+
+| App | Dark | Light |
+| --- | --- | --- |
+| Base16 | [morello.yaml](ports/base16/morello.yaml) | [morello-light.yaml](ports/base16/morello-light.yaml) |
+| bat | [Morello.tmTheme](ports/bat/Morello.tmTheme) | [Morello Light.tmTheme](ports/bat/Morello%20Light.tmTheme) |
+| colorls | [dark_colors.yaml](ports/colorls/dark_colors.yaml) | [light_colors.yaml](ports/colorls/light_colors.yaml) |
+| Emacs | [morello-theme.el](ports/emacs/morello-theme.el) | [morello-light-theme.el](ports/emacs/morello-light-theme.el) |
+| Doom Emacs | [doom-morello-theme.el](ports/doom-emacs/doom-morello-theme.el) | [doom-morello-light-theme.el](ports/doom-emacs/doom-morello-light-theme.el) |
+
+[Setup instructions](docs/APPS.md). Base16 also includes legacy scheme files. Its templates assign their own syntax roles, so generated themes can differ from the dedicated ports.
+
 ## Previews
 
 ### Python
@@ -133,11 +145,15 @@ Body text contrast is **12.36:1** in dark and **13.29:1** in light. Core syntax,
 python scripts/sync_ports.py
 python scripts/sync_extras.py
 python scripts/sync_vim.py
+python scripts/sync_apps.py
 python scripts/verify.py
 python scripts/verify_extras.py
+python tests/bat.py
 nvim --headless -u NONE -l tests/headless.lua
 vim -Nu NONE -n -es -S tests/vim.vim
 ```
+
+CI also loads the Emacs and Doom themes, rebuilds bat's theme cache and checks rendered syntax colors, parses the YAML ports, and runs colorls with both variants. Application-specific tests use the tools listed in [the workflow](.github/workflows/verify.yml).
 
 To refresh both sets of screenshots on Linux, install Kitty, Xvfb, xdotool, ImageMagick, JetBrains Mono, Python 3 with Pillow, and Neovim, then run:
 

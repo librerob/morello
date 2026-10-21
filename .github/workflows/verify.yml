@@ -16,11 +16,14 @@ jobs:
           python scripts/sync_ports.py
           python scripts/sync_extras.py
           python scripts/sync_vim.py
+          python scripts/sync_apps.py
           git diff --exit-code
       - name: Check contrast and port consistency
         run: python scripts/verify.py
       - name: Check extra ports
         run: python scripts/verify_extras.py
+      - name: Check bat theme settings
+        run: python tests/bat.py
   neovim:
     runs-on: ubuntu-latest
     steps:
@@ -51,3 +54,26 @@ jobs:
             foot --check-config --config ports/foot/morello-legacy.ini
             foot --check-config --config ports/foot/morello-light-legacy.ini
           fi
+  apps:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: doomemacs/themes
+          ref: a59202912ad55014e53a685eee6cd94130bdd4fd
+          path: .ci/doom-themes
+          persist-credentials: false
+      - name: Install application test tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y bat emacs-nox ruby ruby-dev
+          sudo gem install --no-document colorls --version 1.5.0
+      - name: Check Base16 YAML and native colorls loading
+        run: ruby tests/apps.rb --colorls
+      - name: Check native bat cache and syntax rendering
+        run: python3 tests/bat.py --bat batcat
+      - name: Check native Emacs and Doom theme loading
+        env:
+          DOOM_THEMES_DIR: ${{ github.workspace }}/.ci/doom-themes
+        run: emacs -Q --batch -l tests/emacs.el -f ert-run-tests-batch-and-exit

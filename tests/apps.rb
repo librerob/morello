@@ -1,0 +1,76 @@
+# Parse the YAML ports with Ruby's YAML reader and exercise colorls itself.
+require 'json'
+require 'yaml'
+require 'set'
+require 'tmpdir'
+require 'fileutils'
+require 'open3'
+
+ROOT = File.expand_path('..', __dir__)
+
+def check(condition, message)
+  raise message unless condition
+end
+
+def luminance(hex)
+  hex.delete_prefix('#').scan(/../).map { |c| c.to_i(16) / 255.0 }
+     .map { |v| v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055)**2.4 }
+     .zip([0.2126, 0.7152, 0.0722]).sum { |v, weight| v * weight }
+end
+
+def contrast(a, b)
+  low, high = [luminance(a), luminance(b)].sort
+  (high + 0.05) / (low + 0.05)
+end
+
+keys = %w[unrecognized_file recognized_file executable_file dir dead_link link socket blockdev chardev
+          hidden hidden_dir write read exec no_access day_old hour_old no_modifier file_large file_medium
+          file_small report user tree empty error normal inode addition modification deletion untracked unchanged]
+%w[dark light].each do |variant|
+  suffix = variant == 'light' ? '-light' : ''
+  palette = JSON.parse(File.read(File.join(ROOT, "palette#{suffix}.json")))
+  p = palette.fetch('colors')
+  base16 = YAML.safe_load_file(File.join(ROOT, "ports/base16/morello#{suffix}.yaml"))
+  legacy = YAML.safe_load_file(File.join(ROOT, "ports/base16/legacy/morello#{suffix}.yaml"))
+  check(base16.fetch('system') == 'base16' && base16.fetch('variant') == variant, 'Base16 metadata')
+  colors = base16.fetch('palette')
+  check(colors.keys.to_set == (0...16).map { |i| format('base%02X', i) }.to_set, 'Base16 slot coverage')
+  colors.each do |key, color|
+    check(p.values.include?(color) || palette.fetch('ansi').include?(color), "Off-palette Base16 #{key}")
+    check(legacy.fetch(key) == color.delete_prefix('#'), "Legacy Base16 drift: #{key}")
+  end
+  { 'base00' => 'bg', 'base03' => 'comment', 'base05' => 'fg',
+    'base0B' => 'string', 'base0D' => 'func', 'base0E' => 'keyword' }.each do |key, role|
+    check(colors.fetch(key) == p.fetch(role), "Base16 role mismatch: #{key}")
+  end
+
+  colorls = YAML.safe_load_file(File.join(ROOT, "ports/colorls/#{variant}_colors.yaml"))
+  check(colorls.keys.to_set == keys.to_set, 'colorls key coverage')
+  colorls.each do |key, color|
+    check(color.match?(/\A#[0-9A-F]{6}\z/) && p.values.include?(color), "Invalid colorls #{key}")
+    next if key == 'tree' # Branch guides are structural; filenames and metadata remain readable.
+    %w[bg float].each { |surface| check(contrast(color, p.fetch(surface)) >= 4.5, "Low-contrast colorls #{key}") }
+  end
+end
+
+if ARGV.include?('--colorls')
+  Dir.mktmpdir('morello-colorls-') do |home|
+    config = File.join(home, '.config/colorls')
+    FileUtils.mkdir_p(config)
+    FileUtils.cp(Dir[File.join(ROOT, 'ports/colorls/*.yaml')], config)
+    fixture = File.join(home, 'fixture')
+    FileUtils.mkdir_p(File.join(fixture, 'documents'))
+    File.write(File.join(fixture, 'example.txt'), 'Morello')
+    %w[dark light].each do |variant|
+      output, error, status = Open3.capture3({ 'HOME' => home, 'TERM' => 'xterm-256color', 'COLORTERM' => 'truecolor' },
+                                            'colorls', '--color=always', "--#{variant}", fixture)
+      check(status.success?, "colorls #{variant} failed: #{error}")
+      check(output.include?('example.txt') && output.include?('documents'), 'colorls listing is incomplete')
+      suffix = variant == 'light' ? '-light' : ''
+      p = JSON.parse(File.read(File.join(ROOT, "palette#{suffix}.json"))).fetch('colors')
+      rgb = p.fetch('func').delete_prefix('#').scan(/../).map { |n| n.to_i(16) }.join(';')
+      check(output.include?("38;2;#{rgb}"), 'colorls did not use the custom directory color')
+    end
+  end
+end
+puts 'Base16 and colorls YAML passed; native colorls passed when requested'
