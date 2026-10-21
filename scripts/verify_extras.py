@@ -76,11 +76,18 @@ def verify(variant):
         key = 'terminal.ansi' + ('Bright' if index > 7 else '') + slot
         assert theme['colors'][key] == color
     palette_values = set(p.values()) | set(ansi)
+    translucent = {'editor.findMatchHighlightBackground': p['search_bg'] + '26',
+                   'editor.inactiveSelectionBackground': p['selection'] + '80',
+                   **{key: p['bg'] + '00' for key in ('editorInlayHint.background',
+                       'editorInlayHint.typeBackground', 'editorInlayHint.parameterBackground')}}
     for key, color in theme['colors'].items():
-        if key == 'editor.findMatchHighlightBackground':
-            assert color == p['search_bg'] + '26'
+        if key in translucent:
+            assert color == translucent[key]
         else:
             assert color in palette_values, f'Color outside palette: {color}'
+    for key in ('editorInlayHint.foreground', 'editorInlayHint.typeForeground',
+                'editorInlayHint.parameterForeground', 'editorCodeLens.foreground'):
+        assert theme['colors'][key] == p['comment'], f'Unreadable annotation: {key}'
     for token in theme['tokenColors']:
         color = token['settings'].get('foreground')
         assert color is None or color in palette_values

@@ -73,12 +73,13 @@ def generate(variant):
         'editor.background': 'bg', 'editor.foreground': 'fg',
         'editorCursor.foreground': 'cursor', 'editor.lineHighlightBackground': 'line',
         'editor.selectionBackground': 'selection', 'editor.selectionForeground': 'fg',
-        'editor.inactiveSelectionBackground': 'selection',
         'editorLineNumber.foreground': 'subdued', 'editorLineNumber.activeForeground': 'focus',
         'editorIndentGuide.background1': 'border', 'editorIndentGuide.activeBackground1': 'comment',
         'editorWhitespace.foreground': 'subdued', 'editorRuler.foreground': 'border',
         'editor.findMatchBackground': 'search_current_bg', 'editor.findMatchForeground': 'search_current_fg',
         'editor.findMatchHighlightForeground': 'fg',
+        'editorInlayHint.foreground': 'comment', 'editorInlayHint.typeForeground': 'comment',
+        'editorInlayHint.parameterForeground': 'comment', 'editorCodeLens.foreground': 'comment',
         'editorError.foreground': 'error', 'editorWarning.foreground': 'warning',
         'editorInfo.foreground': 'info', 'editorHint.foreground': 'hint',
         'editorGutter.addedBackground': 'focus', 'editorGutter.modifiedBackground': 'info',
@@ -118,6 +119,9 @@ def generate(variant):
     }
     workbench = {key: p[role] for key, role in roles.items()}
     workbench['editor.findMatchHighlightBackground'] = p['search_bg'] + '26'
+    workbench['editor.inactiveSelectionBackground'] = p['selection'] + '80'
+    for key in ('editorInlayHint.background', 'editorInlayHint.typeBackground', 'editorInlayHint.parameterBackground'):
+        workbench[key] = p['bg'] + '00'
     ansi_names = ['Black','Red','Green','Yellow','Blue','Magenta','Cyan','White']
     for index, color in enumerate(ansi):
         workbench['terminal.ansi' + ('Bright' if index > 7 else '') + ansi_names[index % 8]] = color

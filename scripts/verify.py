@@ -68,7 +68,7 @@ def verify(variant):
     for label, fg, bg in [
         ('selected text', 'fg', 'selection'), ('search match', 'search_fg', 'search_bg'),
         ('current match', 'search_current_fg', 'search_current_bg'), ('cursor cell', 'bg', 'cursor'),
-        ('selected completion/tab', 'bg', 'func'), ('substitute', 'bg', 'constant'),
+        ('selected tab/wildmenu', 'bg', 'func'), ('substitute', 'bg', 'constant'),
         ('current line number', 'focus', 'line'),
         ('diff added', 'fg', 'diff_add'), ('diff changed', 'fg', 'diff_change'),
         ('diff deleted', 'error', 'diff_delete'), ('diff changed word', 'fg', 'diff_text'),

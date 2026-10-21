@@ -1637,7 +1637,7 @@
       "pass": true
     },
     {
-      "pair": "selected completion/tab",
+      "pair": "selected tab/wildmenu",
       "foreground": "#F8F0F3",
       "background": "#286E53",
       "ratio": 5.4417,
