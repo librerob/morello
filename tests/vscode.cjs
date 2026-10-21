@@ -34,7 +34,8 @@ async function syntax(theme, palette, appRoot) {
     let stack = textmate.INITIAL;
     const seen = new Set();
     const allowed = new Set(Object.values(palette));
-    for (const line of fs.readFileSync(path.join(root, 'examples', example), 'utf8').split(/\r?\n/)) {
+    const fixture = language === 'python' ? '\n# Comment fixture' : language === 'typescript' ? '\nconst label = "Morello";' : '';
+    for (const line of (fs.readFileSync(path.join(root, 'examples', example), 'utf8') + fixture).split(/\r?\n/)) {
       const result = grammar.tokenizeLine2(line, stack);
       stack = result.ruleStack;
       const colors = registry.getColorMap();
@@ -44,8 +45,7 @@ async function syntax(theme, palette, appRoot) {
         seen.add(color);
       }
     }
-    const roles = example === 'document.py' ? ['keyword', 'string', 'func'] : ['keyword', 'string', 'func', 'comment'];
-    for (const role of roles) {
+    for (const role of ['keyword', 'string', 'func', 'comment']) {
       assert(seen.has(palette[role]), `${language} did not resolve ${role}`);
     }
     registry.dispose();
