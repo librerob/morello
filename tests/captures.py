@@ -2,7 +2,7 @@
 from pathlib import Path
 import importlib.util
 import tempfile
-from PIL import Image, ImageDraw
+from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location('check_capture', ROOT / 'scripts/check_capture.py')
@@ -11,9 +11,9 @@ spec.loader.exec_module(guard)
 
 for variant in ('dark', 'light'):
     suffix = '-light' if variant == 'light' else ''
-    for path in (ROOT / 'assets').glob(f'neovim{suffix}-*.png'):
-        if variant == 'dark' and path.name.startswith('neovim-light-'):
-            continue
+    for view in ('lua', 'python', 'typescript', 'ui'):
+        path = ROOT / f'assets/neovim{suffix}-{view}.png'
+        assert path.is_file(), f'Missing preview: {path}'
         guard.validate(path, variant)
 with tempfile.TemporaryDirectory() as directory:
     path = Path(directory) / 'blank.png'

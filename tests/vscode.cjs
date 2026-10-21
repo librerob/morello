@@ -52,13 +52,21 @@ async function syntax(theme, palette, appRoot) {
   }
 }
 
-async function webviewColors(vscode, keys) {
+async function webviewColors(vscode, keys, expectedBackground) {
   const panel = vscode.window.createWebviewPanel('morello-test', 'Morello colors', vscode.ViewColumn.One,
     { enableScripts: true });
   try {
     return await new Promise((resolve, reject) => {
-      const timer = setTimeout(() => reject(new Error('Theme CSS probe timed out')), 15000);
+      let lastColors;
+      const timer = setTimeout(() => reject(new Error(`Theme CSS probe timed out: ${JSON.stringify(lastColors)}`)), 15000);
       const subscription = panel.webview.onDidReceiveMessage(colors => {
+        lastColors = colors;
+        // Updating settings crosses the renderer/extension-host boundary. The
+        // theme kind alone cannot distinguish Morello from another dark theme.
+        const target = expectedBackground.slice(1).match(/../g).map(value => parseInt(value, 16));
+        const background = colors['editor.background'];
+        if (background.toUpperCase() !== expectedBackground &&
+            background !== `rgb(${target.join(', ')})`) return;
         clearTimeout(timer);
         subscription.dispose();
         resolve(colors);
@@ -66,9 +74,13 @@ async function webviewColors(vscode, keys) {
       panel.webview.html = `<!doctype html><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'nonce-morello-test'">
         <script nonce="morello-test">
         const vscode = acquireVsCodeApi();
-        const style = getComputedStyle(document.documentElement);
-        vscode.postMessage(Object.fromEntries(${JSON.stringify(keys)}.map(key =>
-          [key, style.getPropertyValue('--vscode-' + key.replaceAll('.', '-')).trim()])));
+        function sample() {
+          const style = getComputedStyle(document.documentElement);
+          vscode.postMessage(Object.fromEntries(${JSON.stringify(keys)}.map(key =>
+            [key, style.getPropertyValue('--vscode-' + key.replaceAll('.', '-')).trim()])));
+        }
+        sample();
+        setInterval(sample, 50);
         </script>`;
     });
   } finally {
@@ -79,22 +91,21 @@ async function webviewColors(vscode, keys) {
 exports.run = async function () {
   const vscode = require('vscode');
   assert(vscode.extensions.getExtension('librerob.morello-theme'), 'Theme extension did not register');
+  await vscode.workspace.getConfiguration('window').update('autoDetectColorScheme', false, vscode.ConfigurationTarget.Global);
+  await vscode.workspace.getConfiguration('window').update('autoDetectHighContrast', false, vscode.ConfigurationTarget.Global);
   for (const variant of ['dark', 'light', 'dark']) {
     const suffix = variant === 'light' ? '-light' : '';
     const data = JSON.parse(fs.readFileSync(path.join(root, `palette${suffix}.json`), 'utf8'));
     const theme = JSON.parse(fs.readFileSync(path.join(root, `ports/vscode/themes/morello${suffix}-color-theme.json`), 'utf8'));
     await vscode.workspace.getConfiguration('workbench').update('colorTheme', data.name, vscode.ConfigurationTarget.Global);
     const expectedKind = variant === 'dark' ? vscode.ColorThemeKind.Dark : vscode.ColorThemeKind.Light;
-    const deadline = Date.now() + 10000;
-    while (vscode.window.activeColorTheme.kind !== expectedKind && Date.now() < deadline) {
-      await new Promise(resolve => setTimeout(resolve, 50));
-    }
-    assert.equal(vscode.window.activeColorTheme.kind, expectedKind, 'Wrong active theme variant');
+    console.log(`Applying ${data.name}; setting=${vscode.workspace.getConfiguration('workbench').get('colorTheme')}; kind=${vscode.window.activeColorTheme.kind}`);
     const pairs = { 'editor.background': 'bg', 'editor.foreground': 'fg', 'sideBar.background': 'panel',
       'editorInlayHint.foreground': 'comment', 'editorInlayHint.typeForeground': 'comment',
       'editorInlayHint.parameterForeground': 'comment', 'editorCodeLens.foreground': 'comment',
       'editorSuggestWidget.background': 'float', 'editorSuggestWidget.foreground': 'fg' };
-    const actual = await webviewColors(vscode, Object.keys(pairs));
+    const actual = await webviewColors(vscode, Object.keys(pairs), data.colors.bg);
+    assert.equal(vscode.window.activeColorTheme.kind, expectedKind, 'Wrong active theme variant after UI update');
     const rgb = color => color.match(/^#[0-9a-f]{6}$/i) ? color.toUpperCase() :
       '#' + color.match(/[\d.]+/g).slice(0, 3).map(channel => Number(channel).toString(16).padStart(2, '0')).join('').toUpperCase();
     for (const [key, role] of Object.entries(pairs)) {
