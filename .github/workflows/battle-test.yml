@@ -1,0 +1,67 @@
+name: Application regression tests
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  neovim-versions:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        version: [v0.10.4, stable]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download official Neovim
+        env:
+          VERSION: ${{ matrix.version }}
+        run: |
+          curl --fail --location --retry 2 "https://github.com/neovim/neovim/releases/download/$VERSION/nvim-linux-x86_64.tar.gz" -o "$RUNNER_TEMP/nvim.tar.gz"
+          tar -xzf "$RUNNER_TEMP/nvim.tar.gz" -C "$RUNNER_TEMP"
+          echo "$RUNNER_TEMP/nvim-linux-x86_64/bin" >> "$GITHUB_PATH"
+      - name: Check loading, reloading and both variants
+        run: nvim --headless -u NONE -l tests/headless.lua
+      - name: Check effective highlight colors and editing states
+        run: nvim --headless -u NONE -l tests/highlights.lua
+      - name: Install plugin fixtures
+        run: |
+          git clone --depth=1 https://github.com/nvim-lualine/lualine.nvim.git "$RUNNER_TEMP/lualine"
+          git clone --depth=1 https://github.com/nvim-lua/plenary.nvim.git "$RUNNER_TEMP/plenary"
+          git clone --depth=1 --branch 0.1.8 https://github.com/nvim-telescope/telescope.nvim.git "$RUNNER_TEMP/telescope"
+      - name: Check real lualine and Telescope rendering
+        run: nvim --headless -u NONE -l tests/plugins.lua
+  terminals:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install terminals
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y kitty alacritty xfce4-terminal konsole xvfb dbus-x11 python3-pil shellcheck
+      - name: Check Kitty's native configuration parser
+        run: kitty +runpy 'import runpy; runpy.run_path("tests/kitty.py", run_name="__main__")'
+      - name: Query colors inside the running terminals
+        run: dbus-run-session -- xvfb-run -a python3 tests/terminals.py
+      - name: Check capture validation and reject blank frames
+        if: ${{ !cancelled() }}
+        run: |
+          shellcheck scripts/capture.sh
+          python3 tests/captures.py
+  vscode:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install official VS Code test tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y xvfb libasound2t64 libgbm1
+          npm install --prefix "$RUNNER_TEMP/morello-node" --no-audit --no-fund @vscode/test-electron@2.5.2 vscode-textmate@9.2.0 vscode-oniguruma@2.0.1
+      - name: Load both themes and inspect resolved colors and syntax
+        env:
+          MORELLO_NODE_MODULES: ${{ runner.temp }}/morello-node/node_modules
+        run: xvfb-run -a node tests/vscode.cjs
