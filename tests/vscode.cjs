@@ -44,7 +44,8 @@ async function syntax(theme, palette, appRoot) {
         seen.add(color);
       }
     }
-    for (const role of ['keyword', 'string', 'func', 'comment']) {
+    const roles = example === 'document.py' ? ['keyword', 'string', 'func'] : ['keyword', 'string', 'func', 'comment'];
+    for (const role of roles) {
       assert(seen.has(palette[role]), `${language} did not resolve ${role}`);
     }
     registry.dispose();

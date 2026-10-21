@@ -6,6 +6,20 @@ on:
 permissions:
   contents: read
 jobs:
+  repository:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check reproducibility and repository files
+        run: python tests/repository.py
+      - name: Validate Windows Terminal against Microsoft's schema
+        run: |
+          python -m pip install jsonschema
+          curl --fail --location --retry 2 https://raw.githubusercontent.com/microsoft/terminal/main/doc/cascadia/profiles.schema.json -o "$RUNNER_TEMP/terminal-schema.json"
+          python tests/windows_terminal.py "$RUNNER_TEMP/terminal-schema.json"
   neovim-versions:
     runs-on: ubuntu-latest
     strategy:
@@ -52,6 +66,11 @@ jobs:
         run: |
           shellcheck scripts/capture.sh
           python3 tests/captures.py
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: terminal-swatches
+          path: test-results/*.png
   vscode:
     runs-on: ubuntu-latest
     steps:
@@ -79,3 +98,14 @@ jobs:
           /Applications/Ghostty.app/Contents/MacOS/ghostty +version
           /Applications/Ghostty.app/Contents/MacOS/ghostty +validate-config --config-file=ports/ghostty/Morello
           /Applications/Ghostty.app/Contents/MacOS/ghostty +validate-config --config-file="ports/ghostty/Morello Light"
+  foot-current:
+    runs-on: ubuntu-latest
+    container: archlinux:base-devel
+    steps:
+      - name: Install current foot from the official Arch repository
+        run: pacman -Syu --noconfirm git foot ttf-dejavu
+      - uses: actions/checkout@v4
+      - name: Check both modern color sections with foot
+        run: |
+          foot --version
+          foot --check-config --config ports/foot/morello.ini
