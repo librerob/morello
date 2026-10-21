@@ -122,11 +122,21 @@ exports.run = async function () {
 };
 
 if (require.main === module) {
+  // Older development hosts pin the first theme from the development extension
+  // in memory. Install Morello normally and use an empty test-host extension so
+  // variant switching follows the same path as a user's installed theme.
+  const extensions = path.join(process.env.RUNNER_TEMP, 'morello-installed-extensions');
+  const host = path.join(process.env.RUNNER_TEMP, 'morello-vscode-test-host');
+  fs.mkdirSync(extensions, { recursive: true });
+  fs.mkdirSync(host, { recursive: true });
+  fs.cpSync(path.join(root, 'ports/vscode'), path.join(extensions, 'librerob.morello-theme'), { recursive: true });
+  fs.writeFileSync(path.join(host, 'package.json'), JSON.stringify({ name: 'morello-test-host',
+    publisher: 'morello-tests', version: '0.0.0', engines: { vscode: '^1.85.0' } }));
   dependency('@vscode/test-electron').runTests({
     version: process.env.MORELLO_VSCODE_VERSION || 'stable',
     cachePath: path.join(process.env.RUNNER_TEMP, 'morello-vscode'),
-    extensionDevelopmentPath: path.join(root, 'ports/vscode'), extensionTestsPath: __filename,
-    launchArgs: ['--disable-gpu', '--skip-welcome', '--skip-release-notes'],
+    extensionDevelopmentPath: host, extensionTestsPath: __filename,
+    launchArgs: ['--disable-gpu', '--skip-welcome', '--skip-release-notes', '--extensions-dir', extensions],
     extensionTestsEnv: { MORELLO_NODE_MODULES: modules },
   }).catch(error => { console.error(error); process.exitCode = 1; });
 }
