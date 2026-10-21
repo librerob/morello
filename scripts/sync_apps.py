@@ -200,17 +200,25 @@ def generate(variant):
     target.write_bytes(plistlib.dumps({'name': data['name'], 'settings': settings}, sort_keys=False))
 
     colorls_roles = {
-        'unrecognized_file': 'muted', 'recognized_file': 'fg', 'executable_file': 'func', 'dir': 'func',
+        'unrecognized_file': 'muted', 'recognized_file': 'fg', 'executable_file': 'focus', 'dir': 'func',
         'dead_link': 'error', 'link': 'type', 'socket': 'constant', 'blockdev': 'constant',
         'chardev': 'constant', 'hidden': 'muted', 'hidden_dir': 'func',
-        'write': 'keyword', 'read': 'type', 'exec': 'func', 'no_access': 'error',
+        'write': 'keyword', 'read': 'type', 'exec': 'focus', 'no_access': 'error',
         'day_old': 'comment', 'hour_old': 'muted', 'no_modifier': 'comment',
         'file_large': 'warning', 'file_medium': 'constant', 'file_small': 'fg',
         'report': 'muted', 'user': 'constant', 'tree': 'border', 'empty': 'comment',
         'error': 'error', 'normal': 'fg', 'inode': 'comment', 'addition': 'focus',
         'modification': 'type', 'deletion': 'error', 'untracked': 'warning', 'unchanged': 'comment',
     }
-    write(f'ports/colorls/{variant}_colors.yaml', '\n'.join(f'{key}: "{p[role]}"' for key, role in colorls_roles.items()))
+    # Rainbow 3 converts HEX requests to its coarse 256-color cube. ANSI names
+    # preserve the colors of the matching Morello terminal preset instead.
+    neutral = 'white' if variant == 'dark' else 'default'
+    colorls_ansi = {'fg': 'default', 'muted': neutral, 'comment': neutral, 'border': neutral,
+                   'func': 'cyan', 'type': 'blue', 'constant': 'magenta', 'keyword': 'yellow',
+                   'error': 'red', 'warning': 'yellow', 'focus': 'green'}
+    write(f'ports/colorls/{variant}_colors.yaml',
+          f'# {data["name"]}. Use with the matching terminal preset.\n'
+          + '\n'.join(f'{key}: "{colorls_ansi[role]}"' for key, role in colorls_roles.items()))
 
     faces = emacs_faces(p, ansi)
     vector = '[' + ' '.join(json.dumps(color) for color in ansi[:8]) + ']'
@@ -242,7 +250,7 @@ def generate(variant):
     lines = emacs_header(doom_name, data, source)
     lines += ["(require 'doom-themes)", '', f'(def-doom-theme {doom_name}',
               f'  "{data["name"]} colors for doom-themes."', '  (']
-    lines += [f'   ({key} "{p[role]}")' for key, role in defs.items()]
+    lines += [f'   ({key} \'("{p[role]}"))' for key, role in defs.items()]
     lines += ['  )', '  (']
     for face, attrs in faces.items():
         values = ' '.join(f':{key} ' + ("'" if isinstance(value, (Symbol, dict)) else '') + lisp(value)

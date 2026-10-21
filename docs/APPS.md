@@ -35,7 +35,9 @@ colorls --dark
 colorls --light
 ```
 
-Back up existing color files before replacing them. Directories and executable files use celadon or jade; file sizes, permissions, and Git status use the supporting accents. Age labels and other metadata remain readable. Tree guides use the lower-contrast border color. The terminal's own background comes from its terminal theme. See [colorls's configuration guide](https://github.com/athityakumar/colorls#custom-configurations).
+Back up existing color files before replacing them. Use the matching Morello terminal preset: directories use ANSI cyan, executables use green, errors use red, and ordinary files use the terminal's default foreground. Dark metadata uses ANSI white; light metadata uses the default dark foreground so the pale white slot is never used as text.
+
+colorls 1.5 uses Rainbow 3, which converts HEX colors to its 256-color cube even on a truecolor terminal. This port uses ANSI names so the terminal supplies Morello's actual ANSI colors instead. Both the foreground colors and the background therefore depend on your terminal preset. See [colorls's configuration guide](https://github.com/athityakumar/colorls#custom-configurations) and [Rainbow's color handling](https://github.com/ku1ik/rainbow#color-specification).
 
 ## Emacs
 

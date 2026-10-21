@@ -46,11 +46,12 @@ keys = %w[unrecognized_file recognized_file executable_file dir dead_link link s
 
   colorls = YAML.safe_load_file(File.join(ROOT, "ports/colorls/#{variant}_colors.yaml"))
   check(colorls.keys.to_set == keys.to_set, 'colorls key coverage')
-  colorls.each do |key, color|
-    check(color.match?(/\A#[0-9A-F]{6}\z/) && p.values.include?(color), "Invalid colorls #{key}")
-    next if key == 'tree' # Branch guides are structural; filenames and metadata remain readable.
-    %w[bg float].each { |surface| check(contrast(color, p.fetch(surface)) >= 4.5, "Low-contrast colorls #{key}") }
+  colorls.each do |key, name|
+    slots = { 'red' => 1, 'green' => 2, 'yellow' => 3, 'blue' => 4, 'magenta' => 5, 'cyan' => 6, 'white' => 7 }
+    color = name == 'default' ? p.fetch('fg') : palette.fetch('ansi').fetch(slots.fetch(name))
+    %w[bg panel line float].each { |surface| check(contrast(color, p.fetch(surface)) >= 4.5, "Low-contrast colorls #{key}") }
   end
+  check(colorls.fetch('dir') == 'cyan' && colorls.fetch('recognized_file') == 'default', 'colorls semantic roles')
 end
 
 if ARGV.include?('--colorls')
@@ -66,10 +67,7 @@ if ARGV.include?('--colorls')
                                             'colorls', '--color=always', "--#{variant}", fixture)
       check(status.success?, "colorls #{variant} failed: #{error}")
       check(output.include?('example.txt') && output.include?('documents'), 'colorls listing is incomplete')
-      suffix = variant == 'light' ? '-light' : ''
-      p = JSON.parse(File.read(File.join(ROOT, "palette#{suffix}.json"))).fetch('colors')
-      rgb = p.fetch('func').delete_prefix('#').scan(/../).map { |n| n.to_i(16) }.join(';')
-      check(output.include?("38;2;#{rgb}"), "colorls did not use the custom directory color: #{output.inspect}")
+      check(output.include?("\e[36m"), "colorls did not use the custom ANSI directory color: #{output.inspect}")
     end
   end
 end
